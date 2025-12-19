@@ -1,0 +1,113 @@
+/* Glass Cursor Styles */
+.cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: var(--cursor-size);
+    height: var(--cursor-size);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 99999;
+    mix-blend-mode: difference;
+    will-change: transform;
+
+    /* Glass effect */
+    background: linear-gradient(135deg,
+            rgba(255, 255, 255, 0.25) 0%,
+            rgba(255, 255, 255, 0.1) 100%);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow:
+        0 8px 32px rgba(139, 92, 246, 0.15),
+        inset 0 0 20px rgba(255, 255, 255, 0.1);
+
+    transition:
+        width 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+        height 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+        background 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.trail {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: var(--trail-size);
+    height: var(--trail-size);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 99998;
+    will-change: transform;
+
+    /* Glowing dot effect */
+    background: var(--cursor-color);
+    box-shadow:
+        0 0 10px var(--cursor-color),
+        0 0 20px var(--cursor-color),
+        0 0 40px rgba(139, 92, 246, 0.3);
+
+    transition:
+        width 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+        height 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+        background 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+/* Hover state - cursor expands with magnetic effect */
+.cursor.hover {
+    width: calc(var(--cursor-size) * 2);
+    height: calc(var(--cursor-size) * 2);
+    background: linear-gradient(135deg,
+            rgba(139, 92, 246, 0.15) 0%,
+            rgba(192, 132, 252, 0.1) 100%);
+    border-color: rgba(139, 92, 246, 0.5);
+    box-shadow:
+        0 0 30px rgba(139, 92, 246, 0.3),
+        0 0 60px rgba(139, 92, 246, 0.15),
+        inset 0 0 30px rgba(139, 92, 246, 0.1);
+}
+
+.trail.hover {
+    width: calc(var(--trail-size) * 0.5);
+    height: calc(var(--trail-size) * 0.5);
+    opacity: 0.5;
+}
+
+/* Click state - cursor shrinks */
+.cursor.click {
+    width: calc(var(--cursor-size) * 0.8);
+    height: calc(var(--cursor-size) * 0.8);
+    background: linear-gradient(135deg,
+            rgba(139, 92, 246, 0.3) 0%,
+            rgba(192, 132, 252, 0.2) 100%);
+    border-color: rgba(192, 132, 252, 0.6);
+}
+
+.trail.click {
+    width: calc(var(--trail-size) * 1.5);
+    height: calc(var(--trail-size) * 1.5);
+    box-shadow:
+        0 0 15px var(--cursor-color),
+        0 0 30px var(--cursor-color),
+        0 0 60px rgba(139, 92, 246, 0.5);
+}
+
+/* Hide on touch devices */
+@media (hover: none) and (pointer: coarse) {
+
+    .cursor,
+    .trail {
+        display: none !important;
+    }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+
+    .cursor,
+    .trail {
+        display: none !important;
+    }
+}

@@ -3,6 +3,8 @@ export { default as ParticleCanvas } from './ParticleCanvas';
 export { default as BackgroundElements } from './BackgroundElements';
 export { default as Navbar } from './Navbar';
 export { default as FeatureCard } from './FeatureCard';
+export { default as GlassCursor } from './GlassCursor';
+export { default as SmoothScroll } from './SmoothScroll';
 
 // Sections
 export { default as Hero } from './sections/Hero';
