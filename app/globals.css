@@ -193,9 +193,11 @@ img {
 .orb {
     position: absolute;
     border-radius: 50%;
-    filter: blur(100px);
-    opacity: 0.4;
+    aspect-ratio: 1 / 1;
+    filter: blur(80px);
+    opacity: 0.5;
     animation: floatOrb 30s ease-in-out infinite;
+    will-change: transform;
 }
 
 .orb-1 {
