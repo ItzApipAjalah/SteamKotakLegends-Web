@@ -1,0 +1,95 @@
+{
+    "Navbar": {
+        "home": "Home",
+        "features": "Features",
+        "howItWorks": "How It Works",
+        "download": "Download"
+    },
+    "Hero": {
+        "badge": "Open Source Project",
+        "tagline": "Inject all game to Steam",
+        "description": "The ultimate tool to search, manage, and inject games into your Steam library. Download manifests, find online fixes, and take control of your gaming experience.",
+        "downloadNow": "Download Now",
+        "viewOnGitHub": "View on GitHub",
+        "scrollToExplore": "Scroll to explore",
+        "mockup": {
+            "games": "Games",
+            "downloads": "Downloads",
+            "settings": "Settings",
+            "searchGames": "Search games..."
+        },
+        "floatCards": {
+            "gameAdded": "Game Added!",
+            "multiplayer": "Multiplayer",
+            "manifestReady": "Manifest Ready"
+        }
+    },
+    "Features": {
+        "badge": "Features",
+        "title": "Everything you need",
+        "subtitle": "Powerful features to manage your Steam library like never before",
+        "gameSearch": {
+            "title": "Game Search",
+            "desc": "Search and explore Steam games by App ID or name with lightning-fast results."
+        },
+        "gameDetails": {
+            "title": "Game Details",
+            "desc": "View detailed information including prices, release dates, and complete metadata."
+        },
+        "multiplayerDetection": {
+            "title": "Multiplayer Detection",
+            "desc": "Automatically detect multiplayer and co-op support for any game."
+        },
+        "libraryManagement": {
+            "title": "Library Management",
+            "desc": "Add or remove games from your local library with a single click."
+        },
+        "manifestDownload": {
+            "title": "Manifest Download",
+            "desc": "Download game manifests directly from ManifestHub and Kernelos."
+        },
+        "onlineFixIntegration": {
+            "title": "Online Fix Integration",
+            "desc": "Find and download online fixes for multiplayer games seamlessly."
+        }
+    },
+    "HowItWorks": {
+        "badge": "Simple Process",
+        "title": "How it works",
+        "subtitle": "Get started in just three easy steps",
+        "step1": {
+            "title": "Download & Install",
+            "description": "Get SteamKotakLegends from GitHub and run the installer. Quick setup, no complex configuration needed."
+        },
+        "step2": {
+            "title": "Search Your Games",
+            "description": "Use the powerful search to find any game by name or App ID. Browse through thousands of titles."
+        },
+        "step3": {
+            "title": "Inject to Steam",
+            "description": "One click to add the game to your Steam library. Launch and play instantly."
+        }
+    },
+    "DownloadCTA": {
+        "badge": "Ready to Start?",
+        "title": "Level up your <highlight>gaming</highlight> experience",
+        "description": "Download SteamKotakLegends now and take full control of your Steam library. Free, open-source, and constantly updated.",
+        "loading": "Loading...",
+        "downloading": "Downloading...",
+        "downloadStarted": "Download Started!",
+        "downloadNow": "Download Now",
+        "viewSource": "View Source"
+    },
+    "Footer": {
+        "tagline": "Your Ultimate Steam Companion",
+        "description": "Inject all your games to Steam",
+        "quickLinks": "Quick Links",
+        "meetTheTeam": "Meet The Team",
+        "copyright": "© 2025 SteamKotakLegends",
+        "madeWith": "Made with ❤️ in Indonesia",
+        "openSource": "Open Source"
+    },
+    "LanguageSwitcher": {
+        "selectLanguage": "Select Language"
+    }
+}

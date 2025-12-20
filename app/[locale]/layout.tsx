@@ -1,6 +1,10 @@
 import type { Metadata } from 'next';
 import { Space_Grotesk, Inter } from 'next/font/google';
-import './globals.css';
+import { NextIntlClientProvider } from 'next-intl';
+import { getMessages } from 'next-intl/server';
+import { notFound } from 'next/navigation';
+import { locales, type Locale } from '@/i18n';
+import '../globals.css';
 import { GlassCursor, PerformanceAlert } from '@/components';
 
 const spaceGrotesk = Space_Grotesk({
@@ -29,19 +33,39 @@ export const metadata: Metadata = {
     },
 };
 
-export default function RootLayout({
-    children,
-}: {
+type Props = {
     children: React.ReactNode;
-}) {
+    params: Promise<{ locale: string }>;
+};
+
+export default async function LocaleLayout({
+    children,
+    params,
+}: Props) {
+    // Await params before accessing properties (Next.js 15 requirement)
+    const { locale } = await params;
+
+    // Validate that the incoming `locale` parameter is valid
+    if (!locales.includes(locale as Locale)) {
+        notFound();
+    }
+
+    // Providing all messages to the client side
+    const messages = await getMessages();
+
     return (
-        <html lang="en" className={`${spaceGrotesk.variable} ${inter.variable}`}>
+        <html lang={locale} className={`${spaceGrotesk.variable} ${inter.variable}`}>
             <body>
-                <GlassCursor />
-                <PerformanceAlert />
-                {children}
+                <NextIntlClientProvider messages={messages}>
+                    <GlassCursor />
+                    <PerformanceAlert />
+                    {children}
+                </NextIntlClientProvider>
             </body>
         </html>
     );
 }
 
+export function generateStaticParams() {
+    return locales.map((locale) => ({ locale }));
+}

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { FaGithub, FaDiscord, FaHeart, FaGamepad, FaStar } from 'react-icons/fa';
 import { HiSparkles, HiLightningBolt, HiGlobe } from 'react-icons/hi';
@@ -12,15 +13,17 @@ import {
     getClanBadgeUrl
 } from '@/app/api/discord/types';
 
-const quickLinks = [
-    { name: 'Features', href: '#features' },
-    { name: 'Download', href: '#download' },
-    { name: 'GitHub', href: 'https://github.com/ItzApipAjalah/SteamKotakLegends', external: true },
-];
-
 export default function Footer() {
+    const t = useTranslations('Footer');
+    const tNav = useTranslations('Navbar');
     const [developers, setDevelopers] = useState<Developer[]>([]);
     const [isLoading, setIsLoading] = useState(true);
+
+    const quickLinks = [
+        { name: tNav('features'), href: '#features' },
+        { name: tNav('download'), href: '#download' },
+        { name: 'GitHub', href: 'https://github.com/ItzApipAjalah/SteamKotakLegends', external: true },
+    ];
 
     useEffect(() => {
         const fetchDevelopers = async () => {
@@ -69,14 +72,12 @@ export default function Footer() {
                                 </span>
                                 <span className="brand-tagline">
                                     <HiSparkles size={12} />
-                                    Your Ultimate Steam Companion
+                                    {t('tagline')}
                                 </span>
                             </div>
                         </a>
 
-                        <p className="footer-description">
-                            Inject all your games to Steam
-                        </p>
+                        <p className="footer-description">{t('description')}</p>
 
                         {/* Social Links */}
                         <div className="footer-socials">
@@ -103,7 +104,7 @@ export default function Footer() {
                     <div className="footer-links-section">
                         <h4 className="footer-heading">
                             <HiLightningBolt size={16} />
-                            Quick Links
+                            {t('quickLinks')}
                         </h4>
                         <ul className="footer-nav">
                             {quickLinks.map((link) => (
@@ -125,7 +126,7 @@ export default function Footer() {
                     <div className="footer-team-section">
                         <h4 className="footer-heading">
                             <FaStar size={14} />
-                            Meet The Team
+                            {t('meetTheTeam')}
                         </h4>
                         <div className="team-cards">
                             {developers.map((dev) => {
@@ -241,16 +242,16 @@ export default function Footer() {
                 {/* Footer Bottom */}
                 <div className="footer-bottom-bar">
                     <div className="footer-copyright">
-                        <span>&copy; 2025 SteamKotakLegends</span>
+                        <span>{t('copyright')}</span>
                         <span className="separator">•</span>
                         <span className="made-with">
-                            Made with <FaHeart className="heart-pulse" size={12} /> in Indonesia
+                            {t('madeWith').replace('❤️', '')} <FaHeart className="heart-pulse" size={12} /> {t('madeWith').includes('Indonesia') ? 'Indonesia' : ''}
                         </span>
                     </div>
                     <div className="footer-meta">
                         <span className="version-badge">
                             <HiGlobe size={12} />
-                            Open Source
+                            {t('openSource')}
                         </span>
                     </div>
                 </div>

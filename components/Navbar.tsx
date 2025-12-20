@@ -1,17 +1,20 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-
-const navItems = [
-    { id: 'home', label: 'Home', icon: 'home' },
-    { id: 'features', label: 'Features', icon: 'features' },
-    { id: 'how-it-works', label: 'How It Works', icon: 'code' },
-];
+import { useTranslations } from 'next-intl';
+import LanguageSwitcher from './LanguageSwitcher';
 
 export default function Navbar() {
+    const t = useTranslations('Navbar');
     const [scrolled, setScrolled] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
     const [activeSection, setActiveSection] = useState('home');
+
+    const navItems = [
+        { id: 'home', label: t('home'), icon: 'home' },
+        { id: 'features', label: t('features'), icon: 'features' },
+        { id: 'how-it-works', label: t('howItWorks'), icon: 'code' },
+    ];
 
     useEffect(() => {
         const handleScroll = () => {
@@ -128,14 +131,17 @@ export default function Navbar() {
                     ))}
                 </ul>
 
-                <a href="#download" className="nav-cta-btn" onClick={(e) => handleNavClick(e, '#download')}>
-                    <svg className="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                        <polyline points="7 10 12 15 17 10" />
-                        <line x1="12" y1="15" x2="12" y2="3" />
-                    </svg>
-                    <span>Download</span>
-                </a>
+                <div className="nav-actions">
+                    <LanguageSwitcher />
+                    <a href="#download" className="nav-cta-btn" onClick={(e) => handleNavClick(e, '#download')}>
+                        <svg className="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                            <polyline points="7 10 12 15 17 10" />
+                            <line x1="12" y1="15" x2="12" y2="3" />
+                        </svg>
+                        <span>{t('download')}</span>
+                    </a>
+                </div>
 
                 <button
                     className={`nav-toggle ${menuOpen ? 'active' : ''}`}

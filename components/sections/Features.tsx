@@ -1,13 +1,18 @@
+'use client';
+
+import { useTranslations } from 'next-intl';
 import FeatureCard from '../FeatureCard';
 
 export default function Features() {
+    const t = useTranslations('Features');
+
     return (
         <section className="features" id="features">
             <div className="container">
                 <div className="section-header">
-                    <span className="section-badge">Features</span>
-                    <h2 className="section-title">Everything you need</h2>
-                    <p className="section-subtitle">Powerful features to manage your Steam library like never before</p>
+                    <span className="section-badge">{t('badge')}</span>
+                    <h2 className="section-title">{t('title')}</h2>
+                    <p className="section-subtitle">{t('subtitle')}</p>
                 </div>
                 <div className="features-grid">
                     <FeatureCard
@@ -17,8 +22,8 @@ export default function Features() {
                                 <path d="M21 21l-4.35-4.35" />
                             </svg>
                         }
-                        title="Game Search"
-                        desc="Search and explore Steam games by App ID or name with lightning-fast results."
+                        title={t('gameSearch.title')}
+                        desc={t('gameSearch.desc')}
                     />
                     <FeatureCard
                         icon={
@@ -30,8 +35,8 @@ export default function Features() {
                                 <line x1="10" y1="9" x2="8" y2="9" />
                             </svg>
                         }
-                        title="Game Details"
-                        desc="View detailed information including prices, release dates, and complete metadata."
+                        title={t('gameDetails.title')}
+                        desc={t('gameDetails.desc')}
                     />
                     <FeatureCard
                         icon={
@@ -42,8 +47,8 @@ export default function Features() {
                                 <path d="M16 3.13a4 4 0 0 1 0 7.75" />
                             </svg>
                         }
-                        title="Multiplayer Detection"
-                        desc="Automatically detect multiplayer and co-op support for any game."
+                        title={t('multiplayerDetection.title')}
+                        desc={t('multiplayerDetection.desc')}
                     />
                     <FeatureCard
                         icon={
@@ -51,8 +56,8 @@ export default function Features() {
                                 <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
                             </svg>
                         }
-                        title="Library Management"
-                        desc="Add or remove games from your local library with a single click."
+                        title={t('libraryManagement.title')}
+                        desc={t('libraryManagement.desc')}
                     />
                     <FeatureCard
                         icon={
@@ -62,8 +67,8 @@ export default function Features() {
                                 <line x1="12" y1="15" x2="12" y2="3" />
                             </svg>
                         }
-                        title="Manifest Download"
-                        desc="Download game manifests directly from ManifestHub and Kernelos."
+                        title={t('manifestDownload.title')}
+                        desc={t('manifestDownload.desc')}
                     />
                     <FeatureCard
                         icon={
@@ -73,8 +78,8 @@ export default function Features() {
                                 <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
                             </svg>
                         }
-                        title="Online Fix Integration"
-                        desc="Find and download online fixes for multiplayer games seamlessly."
+                        title={t('onlineFixIntegration.title')}
+                        desc={t('onlineFixIntegration.desc')}
                     />
                 </div>
             </div>

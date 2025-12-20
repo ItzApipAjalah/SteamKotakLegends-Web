@@ -12,6 +12,7 @@
     "detect-gpu-js": "^1.0.8",
     "lenis": "^1.3.16",
     "next": "^15.0.0",
+    "next-intl": "^4.6.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-icons": "^5.5.0",

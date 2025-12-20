@@ -1,0 +1,95 @@
+{
+    "Navbar": {
+        "home": "ホーム",
+        "features": "機能",
+        "howItWorks": "使い方",
+        "download": "ダウンロード"
+    },
+    "Hero": {
+        "badge": "オープンソースプロジェクト",
+        "tagline": "すべてのゲームをSteamにインジェクト",
+        "description": "Steamライブラリにゲームを検索、管理、インジェクトするための究極のツール。マニフェストのダウンロード、オンラインフィックスの検索、ゲーム体験をコントロール。",
+        "downloadNow": "今すぐダウンロード",
+        "viewOnGitHub": "GitHubで見る",
+        "scrollToExplore": "スクロールして探索",
+        "mockup": {
+            "games": "ゲーム",
+            "downloads": "ダウンロード",
+            "settings": "設定",
+            "searchGames": "ゲームを検索..."
+        },
+        "floatCards": {
+            "gameAdded": "ゲーム追加完了！",
+            "multiplayer": "マルチプレイヤー",
+            "manifestReady": "マニフェスト準備完了"
+        }
+    },
+    "Features": {
+        "badge": "機能",
+        "title": "必要なすべてが揃っています",
+        "subtitle": "これまでにないパワフルな機能でSteamライブラリを管理",
+        "gameSearch": {
+            "title": "ゲーム検索",
+            "desc": "App IDまたは名前でSteamゲームを超高速で検索・探索。"
+        },
+        "gameDetails": {
+            "title": "ゲーム詳細",
+            "desc": "価格、リリース日、完全なメタデータを含む詳細情報を表示。"
+        },
+        "multiplayerDetection": {
+            "title": "マルチプレイヤー検出",
+            "desc": "あらゆるゲームのマルチプレイヤーおよびCo-opサポートを自動検出。"
+        },
+        "libraryManagement": {
+            "title": "ライブラリ管理",
+            "desc": "ワンクリックでローカルライブラリにゲームを追加・削除。"
+        },
+        "manifestDownload": {
+            "title": "マニフェストダウンロード",
+            "desc": "ManifestHubとKernelosから直接ゲームマニフェストをダウンロード。"
+        },
+        "onlineFixIntegration": {
+            "title": "オンラインフィックス統合",
+            "desc": "マルチプレイヤーゲームのオンラインフィックスをシームレスに検索・ダウンロード。"
+        }
+    },
+    "HowItWorks": {
+        "badge": "シンプルなプロセス",
+        "title": "使い方",
+        "subtitle": "簡単3ステップで始めましょう",
+        "step1": {
+            "title": "ダウンロード＆インストール",
+            "description": "GitHubからSteamKotakLegendsを取得してインストーラーを実行。素早いセットアップ、複雑な設定は不要。"
+        },
+        "step2": {
+            "title": "ゲームを検索",
+            "description": "パワフルな検索で名前またはApp IDでゲームを検索。数千のタイトルを閲覧。"
+        },
+        "step3": {
+            "title": "Steamにインジェクト",
+            "description": "ワンクリックでSteamライブラリにゲームを追加。すぐにプレイ開始。"
+        }
+    },
+    "DownloadCTA": {
+        "badge": "始める準備はできましたか？",
+        "title": "<highlight>ゲーミング</highlight>体験をレベルアップ",
+        "description": "今すぐSteamKotakLegendsをダウンロードして、Steamライブラリを完全にコントロール。無料、オープンソース、常に更新。",
+        "loading": "読み込み中...",
+        "downloading": "ダウンロード中...",
+        "downloadStarted": "ダウンロード開始！",
+        "downloadNow": "今すぐダウンロード",
+        "viewSource": "ソースを見る"
+    },
+    "Footer": {
+        "tagline": "究極のSteamコンパニオン",
+        "description": "すべてのゲームをSteamにインジェクト",
+        "quickLinks": "クイックリンク",
+        "meetTheTeam": "チーム紹介",
+        "copyright": "© 2025 SteamKotakLegends",
+        "madeWith": "インドネシアで❤️を込めて作成",
+        "openSource": "オープンソース"
+    },
+    "LanguageSwitcher": {
+        "selectLanguage": "言語を選択"
+    }
+}

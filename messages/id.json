@@ -1,0 +1,95 @@
+{
+    "Navbar": {
+        "home": "Beranda",
+        "features": "Fitur",
+        "howItWorks": "Cara Kerja",
+        "download": "Unduh"
+    },
+    "Hero": {
+        "badge": "Proyek Open Source",
+        "tagline": "Inject semua game ke Steam",
+        "description": "Alat utama untuk mencari, mengelola, dan menginjeksi game ke library Steam Anda. Unduh manifest, temukan online fix, dan kendalikan pengalaman gaming Anda.",
+        "downloadNow": "Unduh Sekarang",
+        "viewOnGitHub": "Lihat di GitHub",
+        "scrollToExplore": "Scroll untuk menjelajah",
+        "mockup": {
+            "games": "Game",
+            "downloads": "Unduhan",
+            "settings": "Pengaturan",
+            "searchGames": "Cari game..."
+        },
+        "floatCards": {
+            "gameAdded": "Game Ditambahkan!",
+            "multiplayer": "Multiplayer",
+            "manifestReady": "Manifest Siap"
+        }
+    },
+    "Features": {
+        "badge": "Fitur",
+        "title": "Semua yang Anda butuhkan",
+        "subtitle": "Fitur powerful untuk mengelola library Steam Anda seperti tidak pernah sebelumnya",
+        "gameSearch": {
+            "title": "Pencarian Game",
+            "desc": "Cari dan jelajahi game Steam berdasarkan App ID atau nama dengan hasil secepat kilat."
+        },
+        "gameDetails": {
+            "title": "Detail Game",
+            "desc": "Lihat informasi detail termasuk harga, tanggal rilis, dan metadata lengkap."
+        },
+        "multiplayerDetection": {
+            "title": "Deteksi Multiplayer",
+            "desc": "Deteksi otomatis dukungan multiplayer dan co-op untuk game apapun."
+        },
+        "libraryManagement": {
+            "title": "Manajemen Library",
+            "desc": "Tambah atau hapus game dari library lokal Anda dengan satu klik."
+        },
+        "manifestDownload": {
+            "title": "Unduh Manifest",
+            "desc": "Unduh manifest game langsung dari ManifestHub dan Kernelos."
+        },
+        "onlineFixIntegration": {
+            "title": "Integrasi Online Fix",
+            "desc": "Temukan dan unduh online fix untuk game multiplayer dengan mudah."
+        }
+    },
+    "HowItWorks": {
+        "badge": "Proses Sederhana",
+        "title": "Cara kerjanya",
+        "subtitle": "Mulai dalam tiga langkah mudah",
+        "step1": {
+            "title": "Unduh & Install",
+            "description": "Dapatkan SteamKotakLegends dari GitHub dan jalankan installer. Setup cepat, tidak perlu konfigurasi rumit."
+        },
+        "step2": {
+            "title": "Cari Game Anda",
+            "description": "Gunakan pencarian powerful untuk menemukan game apapun berdasarkan nama atau App ID. Jelajahi ribuan judul."
+        },
+        "step3": {
+            "title": "Inject ke Steam",
+            "description": "Satu klik untuk menambahkan game ke library Steam Anda. Langsung mainkan."
+        }
+    },
+    "DownloadCTA": {
+        "badge": "Siap Memulai?",
+        "title": "Tingkatkan pengalaman <highlight>gaming</highlight> Anda",
+        "description": "Unduh SteamKotakLegends sekarang dan kendalikan penuh library Steam Anda. Gratis, open-source, dan terus diperbarui.",
+        "loading": "Memuat...",
+        "downloading": "Mengunduh...",
+        "downloadStarted": "Unduhan Dimulai!",
+        "downloadNow": "Unduh Sekarang",
+        "viewSource": "Lihat Kode"
+    },
+    "Footer": {
+        "tagline": "Pendamping Steam Terbaik Anda",
+        "description": "Inject semua game Anda ke Steam",
+        "quickLinks": "Link Cepat",
+        "meetTheTeam": "Kenali Tim Kami",
+        "copyright": "© 2025 SteamKotakLegends",
+        "madeWith": "Dibuat dengan ❤️ di Indonesia",
+        "openSource": "Open Source"
+    },
+    "LanguageSwitcher": {
+        "selectLanguage": "Pilih Bahasa"
+    }
+}

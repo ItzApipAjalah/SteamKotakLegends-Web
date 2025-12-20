@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useTranslations } from 'next-intl';
 import { HiDownload, HiShieldCheck, HiSparkles, HiCheck } from 'react-icons/hi';
 import { FaGithub } from 'react-icons/fa';
 import type { ReleaseData } from '@/app/api/github/types';
@@ -15,6 +16,7 @@ const STAT_ICONS: Record<string, typeof HiSparkles> = {
 };
 
 export default function DownloadCTA() {
+    const t = useTranslations('DownloadCTA');
     const [releaseData, setReleaseData] = useState<ReleaseData | null>(null);
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [downloadState, setDownloadState] = useState<DownloadState>('idle');
@@ -61,7 +63,7 @@ export default function DownloadCTA() {
             return (
                 <>
                     <div className="download-spinner" />
-                    <span>Loading...</span>
+                    <span>{t('loading')}</span>
                 </>
             );
         }
@@ -74,21 +76,21 @@ export default function DownloadCTA() {
                             <HiDownload size={22} className="download-bounce" />
                             <div className="download-ripple" />
                         </div>
-                        <span className="download-text-animate">Downloading...</span>
+                        <span className="download-text-animate">{t('downloading')}</span>
                     </>
                 );
             case 'complete':
                 return (
                     <>
                         <HiCheck size={22} className="download-check" />
-                        <span>Download Started!</span>
+                        <span>{t('downloadStarted')}</span>
                     </>
                 );
             default:
                 return (
                     <>
                         <HiDownload size={22} />
-                        <span>Download Now{releaseData?.version ? ` ${releaseData.version}` : ''}</span>
+                        <span>{t('downloadNow')}{releaseData?.version ? ` ${releaseData.version}` : ''}</span>
                     </>
                 );
         }
@@ -209,14 +211,13 @@ export default function DownloadCTA() {
                         <div className="cta-glow-orb cta-orb-2" />
 
                         <div className="cta-content-new">
-                            <span className="cta-badge">Ready to Start?</span>
+                            <span className="cta-badge">{t('badge')}</span>
                             <h2 className="cta-title-new">
-                                Level up your <span className="shimmer-text">gaming</span> experience
+                                {t.rich('title', {
+                                    highlight: (chunks) => <span className="shimmer-text">{chunks}</span>
+                                })}
                             </h2>
-                            <p className="cta-desc-new">
-                                Download SteamKotakLegends now and take full control of your Steam library.
-                                Free, open-source, and constantly updated.
-                            </p>
+                            <p className="cta-desc-new">{t('description')}</p>
 
                             <div className="cta-buttons-new">
                                 <a
@@ -233,7 +234,7 @@ export default function DownloadCTA() {
                                     className="btn btn-secondary btn-large"
                                 >
                                     <FaGithub size={20} />
-                                    <span>View Source</span>
+                                    <span>{t('viewSource')}</span>
                                 </a>
                             </div>
 

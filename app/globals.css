@@ -598,6 +598,16 @@ img {
     left: 100%;
 }
 
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.navbar-wrapper.scrolled .nav-actions {
+    gap: 10px;
+}
+
 .nav-toggle {
     display: none;
     flex-direction: column;

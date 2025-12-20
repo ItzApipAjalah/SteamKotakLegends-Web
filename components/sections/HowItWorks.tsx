@@ -1,39 +1,42 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import { HiDownload, HiSearch, HiPlay } from 'react-icons/hi';
 
-const steps = [
-    {
-        number: '01',
-        title: 'Download & Install',
-        description: 'Get SteamKotakLegends from GitHub and run the installer. Quick setup, no complex configuration needed.',
-        icon: HiDownload,
-        color: '#8b5cf6',
-    },
-    {
-        number: '02',
-        title: 'Search Your Games',
-        description: 'Use the powerful search to find any game by name or App ID. Browse through thousands of titles.',
-        icon: HiSearch,
-        color: '#c084fc',
-    },
-    {
-        number: '03',
-        title: 'Inject to Steam',
-        description: 'One click to add the game to your Steam library. Launch and play instantly.',
-        icon: HiPlay,
-        color: '#f472b6',
-    },
-];
-
 export default function HowItWorks() {
+    const t = useTranslations('HowItWorks');
+
+    const steps = [
+        {
+            number: '01',
+            title: t('step1.title'),
+            description: t('step1.description'),
+            icon: HiDownload,
+            color: '#8b5cf6',
+        },
+        {
+            number: '02',
+            title: t('step2.title'),
+            description: t('step2.description'),
+            icon: HiSearch,
+            color: '#c084fc',
+        },
+        {
+            number: '03',
+            title: t('step3.title'),
+            description: t('step3.description'),
+            icon: HiPlay,
+            color: '#f472b6',
+        },
+    ];
+
     return (
         <section className="how-it-works" id="how-it-works">
             <div className="container">
                 <div className="section-header">
-                    <span className="section-badge">Simple Process</span>
-                    <h2 className="section-title">How it works</h2>
-                    <p className="section-subtitle">Get started in just three easy steps</p>
+                    <span className="section-badge">{t('badge')}</span>
+                    <h2 className="section-title">{t('title')}</h2>
+                    <p className="section-subtitle">{t('subtitle')}</p>
                 </div>
 
                 <div className="steps-grid">
