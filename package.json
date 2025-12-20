@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "detect-gpu-js": "^1.0.8",
     "lenis": "^1.3.16",
     "next": "^15.0.0",
     "react": "^19.0.0",

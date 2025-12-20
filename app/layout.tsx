@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { Space_Grotesk, Inter } from 'next/font/google';
 import './globals.css';
-import { GlassCursor } from '@/components';
+import { GlassCursor, PerformanceAlert } from '@/components';
 
 const spaceGrotesk = Space_Grotesk({
     subsets: ['latin'],
@@ -38,6 +38,7 @@ export default function RootLayout({
         <html lang="en" className={`${spaceGrotesk.variable} ${inter.variable}`}>
             <body>
                 <GlassCursor />
+                <PerformanceAlert />
                 {children}
             </body>
         </html>
