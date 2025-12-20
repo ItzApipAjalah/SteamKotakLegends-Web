@@ -10,7 +10,6 @@ import {
     HowItWorks,
     DownloadCTA,
     Footer,
-    GlassCursor,
     SmoothScroll
 } from '@/components';
 
@@ -56,7 +55,6 @@ export default function Home() {
 
     return (
         <SmoothScroll>
-            <GlassCursor color="#8b5cf6" size={28} trailSize={10} />
             <BackgroundElements />
             <ParticleCanvas />
             <Navbar />
