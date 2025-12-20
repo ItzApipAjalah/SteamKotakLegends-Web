@@ -1,7 +1,8 @@
+'use client';
 // @ts-nocheck
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
-import './LiquidEther.css';
+import './css/LiquidEther.css';
 
 export default function LiquidEther({
     mouseForce = 20,
@@ -69,21 +70,20 @@ export default function LiquidEther({
         const bgVec4 = new THREE.Vector4(0, 0, 0, 0); // always transparent
 
         class CommonClass {
-            constructor() {
-                this.width = 0;
-                this.height = 0;
-                this.aspect = 1;
-                this.pixelRatio = 1;
-                this.isMobile = false;
-                this.breakpoint = 768;
-                this.fboWidth = null;
-                this.fboHeight = null;
-                this.time = 0;
-                this.delta = 0;
-                this.container = null;
-                this.renderer = null;
-                this.clock = null;
-            }
+            width: number = 0;
+            height: number = 0;
+            aspect: number = 1;
+            pixelRatio: number = 1;
+            isMobile: boolean = false;
+            breakpoint: number = 768;
+            fboWidth: number | null = null;
+            fboHeight: number | null = null;
+            time: number = 0;
+            delta: number = 0;
+            container: HTMLElement | null = null;
+            renderer: THREE.WebGLRenderer | null = null;
+            clock: THREE.Clock | null = null;
+            constructor() { }
             init(container) {
                 this.container = container;
                 this.pixelRatio = Math.min(window.devicePixelRatio || 1, 2);

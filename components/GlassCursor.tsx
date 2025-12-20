@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import styles from './GlassCursor.module.css';
+import styles from './css/GlassCursor.module.css';
 
 interface GlassCursorProps {
     color?: string;

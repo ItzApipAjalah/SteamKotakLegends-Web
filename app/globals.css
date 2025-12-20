@@ -93,6 +93,31 @@ body {
 a {
     text-decoration: none;
     color: inherit;
+    cursor: none;
+}
+
+button,
+input,
+textarea,
+select,
+label,
+[role="button"],
+[role="link"],
+[tabindex],
+[onclick],
+*[class*="btn"],
+*[class*="button"],
+*[class*="link"],
+*[class*="card"],
+*[class*="nav"],
+*[class*="social"],
+*[class*="team"],
+*[class*="feature"],
+*[class*="clickable"],
+*[class*="toggle"],
+*[class*="menu"],
+*[class*="cta"] {
+    cursor: none !important;
 }
 
 ul {

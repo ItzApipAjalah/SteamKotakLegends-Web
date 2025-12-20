@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Space_Grotesk, Inter } from 'next/font/google';
 import './globals.css';
+import { GlassCursor } from '@/components';
 
 const spaceGrotesk = Space_Grotesk({
     subsets: ['latin'],
@@ -35,7 +36,11 @@ export default function RootLayout({
 }) {
     return (
         <html lang="en" className={`${spaceGrotesk.variable} ${inter.variable}`}>
-            <body>{children}</body>
+            <body>
+                <GlassCursor />
+                {children}
+            </body>
         </html>
     );
 }
+
