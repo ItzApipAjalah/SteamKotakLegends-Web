@@ -144,6 +144,9 @@ export default function RootLayout({
     return (
         <html lang="id" className={`${spaceGrotesk.variable} ${inter.variable}`}>
             <head>
+                {/* Google Search Console Verification */}
+                <meta name="google-site-verification" content="51091D40RACwDnOAxluD4D85HG7rZWzw3z-jEw1j5vA" />
+
                 {/* Preconnect to critical origins */}
                 <link rel="preconnect" href="https://cdn.discordapp.com" crossOrigin="anonymous" />
                 <link rel="dns-prefetch" href="https://cdn.discordapp.com" />
