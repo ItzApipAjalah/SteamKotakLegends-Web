@@ -87,9 +87,9 @@ export const metadata: Metadata = {
         images: [
             {
                 url: `${siteUrl}/og-image.png`,
-                width: 1200,
-                height: 630,
-                alt: 'SteamKotakLegends Banner',
+                width: 1280,
+                height: 427,
+                alt: 'SteamKotakLegends - Inject All Game to Steam',
                 type: 'image/png',
             },
         ],
