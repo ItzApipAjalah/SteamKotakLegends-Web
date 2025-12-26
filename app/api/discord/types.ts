@@ -86,14 +86,16 @@ export function getAvatarUrl(user: DiscordUser): string {
     if (!user.avatar) {
         return `https://cdn.discordapp.com/embed/avatars/${Number(user.id) % 5}.png`;
     }
-    const ext = user.avatar.startsWith('a_') ? 'gif' : 'png';
-    return `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.${ext}?size=128`;
+    // Use size=64 for 48px display (1.33x for retina), avoid GIFs for performance
+    const ext = 'webp'; // Always use WebP for smaller size
+    return `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.${ext}?size=64`;
 }
 
 export function getDecorationUrl(user: DiscordUser): string | null {
     if (!user.avatar_decoration_data?.asset) return null;
     const asset = user.avatar_decoration_data.asset;
-    return `https://cdn.discordapp.com/avatar-decoration-presets/${asset}.png?size=64&passthrough=true`;
+    // Use size=80 for 64px display, WebP for smaller size
+    return `https://cdn.discordapp.com/avatar-decoration-presets/${asset}.png?size=80&passthrough=true`;
 }
 
 export function getClanBadgeUrl(user: DiscordUser): string | null {

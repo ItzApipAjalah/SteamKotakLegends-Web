@@ -146,7 +146,6 @@ export default function Footer() {
                                                         width={48}
                                                         height={48}
                                                         className="team-avatar-img"
-                                                        unoptimized
                                                     />
                                                     {/* Avatar Decoration */}
                                                     {getDecorationUrl(user) && (
@@ -156,7 +155,6 @@ export default function Footer() {
                                                             width={64}
                                                             height={64}
                                                             className="avatar-decoration"
-                                                            unoptimized
                                                         />
                                                     )}
                                                 </>
@@ -195,7 +193,6 @@ export default function Footer() {
                                                                 width={16}
                                                                 height={16}
                                                                 className="clan-badge-img"
-                                                                unoptimized
                                                             />
                                                             <span className="clan-tag">{user.primary_guild.tag}</span>
                                                         </div>
