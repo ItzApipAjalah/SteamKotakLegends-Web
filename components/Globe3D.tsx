@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import createGlobe from 'cobe';
 
 interface GlobeProps {
@@ -9,57 +9,62 @@ interface GlobeProps {
 
 export default function Globe3D({ size = 300 }: GlobeProps) {
     const canvasRef = useRef<HTMLCanvasElement>(null);
+    const containerRef = useRef<HTMLDivElement>(null);
+    const [isVisible, setIsVisible] = useState(false);
+
+    // Visibility observer - pause globe when off-screen
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => setIsVisible(entry.isIntersecting),
+            { threshold: 0.1 }
+        );
+        if (containerRef.current) observer.observe(containerRef.current);
+        return () => observer.disconnect();
+    }, []);
 
     useEffect(() => {
+        if (!isVisible || !canvasRef.current) return;
+
         let phi = 0;
-        let width = 0;
 
-        const onResize = () => {
-            if (canvasRef.current) {
-                width = canvasRef.current.offsetWidth;
-            }
-        };
-
-        window.addEventListener('resize', onResize);
-        onResize();
-
-        const globe = createGlobe(canvasRef.current!, {
-            devicePixelRatio: 2,
-            width: size * 2,
-            height: size * 2,
+        const globe = createGlobe(canvasRef.current, {
+            devicePixelRatio: 1.5, // Reduced from 2 for better FPS
+            width: size * 1.5,
+            height: size * 1.5,
             phi: 0,
             theta: 0.3,
             dark: 1,
             diffuse: 1.2,
-            mapSamples: 16000,
+            mapSamples: 8000, // Reduced from 16000 for better FPS
             mapBrightness: 12,
             baseColor: [0.05, 0.05, 0.05],
             markerColor: [1, 1, 1],
             glowColor: [0.54, 0.36, 0.97],
             markers: [],
             onRender: (state) => {
-                // Auto rotate
                 state.phi = phi;
-                phi += 0.005;
+                phi += 0.003; // Slower rotation for less CPU usage
             },
         });
 
         return () => {
             globe.destroy();
-            window.removeEventListener('resize', onResize);
         };
-    }, [size]);
+    }, [size, isVisible]);
 
     return (
-        <div style={{
-            width: size,
-            height: size,
-            margin: '0 auto',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            position: 'relative',
-        }}>
+        <div
+            ref={containerRef}
+            style={{
+                width: size,
+                height: size,
+                margin: '0 auto',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                position: 'relative',
+            }}
+        >
             <canvas
                 ref={canvasRef}
                 style={{

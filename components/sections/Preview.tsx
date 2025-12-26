@@ -44,13 +44,13 @@ export default function Preview() {
     const [isInView, setIsInView] = useState(false);
     const sectionRef = useRef<HTMLElement>(null);
 
-    // Mouse tracking for 3D tilt
+    // Mouse tracking for 3D tilt - optimized for performance
     const mouseX = useMotionValue(0);
     const mouseY = useMotionValue(0);
-    const springX = useSpring(mouseX, { stiffness: 80, damping: 25 });
-    const springY = useSpring(mouseY, { stiffness: 80, damping: 25 });
-    const rotateX = useTransform(springY, [-400, 400], [8, -8]);
-    const rotateY = useTransform(springX, [-400, 400], [-12, 12]);
+    const springX = useSpring(mouseX, { stiffness: 50, damping: 30 }); // Smoother, less CPU
+    const springY = useSpring(mouseY, { stiffness: 50, damping: 30 });
+    const rotateX = useTransform(springY, [-400, 400], [5, -5]); // Reduced tilt range
+    const rotateY = useTransform(springX, [-400, 400], [-8, 8]);
 
     const handleMouseMove = (e: React.MouseEvent) => {
         if (!sectionRef.current) return;
@@ -221,14 +221,6 @@ export default function Preview() {
                         saturate(1.4) 
                         brightness(1.18)
                         drop-shadow(0 0 2px rgba(255, 255, 255, 0.25));
-                }
-
-                .preview-tilt-card::after {
-                    content: '';
-                    position: absolute;
-                    inset: 0;
-                    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), transparent 60%);
-                    pointer-events: none;
                 }
 
                 /* Right Side */
