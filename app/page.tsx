@@ -1,8 +1,7 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import {
-    ParticleCanvas,
     BackgroundElements,
     Navbar,
     Hero,
@@ -14,6 +13,9 @@ import {
 } from '@/components';
 
 export default function Home() {
+    const rafRef = useRef<number | null>(null);
+    const isScrollingRef = useRef(false);
+
     useEffect(() => {
         // Scroll reveal animation
         const revealElements = document.querySelectorAll('.feature-card, .step-card, .section-header, .cta-card');
@@ -36,19 +38,32 @@ export default function Home() {
 
         revealElements.forEach((el) => observer.observe(el));
 
-        // Parallax effect for orbs
-        const handleScroll = () => {
+        // Throttled parallax effect for orbs (using RAF)
+        const updateParallax = () => {
+            if (!isScrollingRef.current) return;
+
             const scrolled = window.pageYOffset;
             const orbs = document.querySelectorAll('.orb');
             orbs.forEach((orb, index) => {
-                const speed = (index + 1) * 0.05;
-                (orb as HTMLElement).style.transform = `translateY(${scrolled * speed}px)`;
+                const speed = (index + 1) * 0.03;
+                (orb as HTMLElement).style.transform = `translate3d(0, ${scrolled * speed}px, 0)`;
             });
+
+            isScrollingRef.current = false;
         };
-        window.addEventListener('scroll', handleScroll);
+
+        const handleScroll = () => {
+            if (!isScrollingRef.current) {
+                isScrollingRef.current = true;
+                rafRef.current = requestAnimationFrame(updateParallax);
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
 
         return () => {
             window.removeEventListener('scroll', handleScroll);
+            if (rafRef.current) cancelAnimationFrame(rafRef.current);
             observer.disconnect();
         };
     }, []);
@@ -56,7 +71,6 @@ export default function Home() {
     return (
         <SmoothScroll>
             <BackgroundElements />
-            <ParticleCanvas />
             <Navbar />
             <Hero />
             <Features />

@@ -80,7 +80,6 @@ body {
     -webkit-font-smoothing: antialiased;
     max-width: 100vw;
     position: relative;
-    cursor: none;
 }
 
 /* Keep cursor visible on touch devices */
@@ -93,32 +92,9 @@ body {
 a {
     text-decoration: none;
     color: inherit;
-    cursor: none;
 }
 
-button,
-input,
-textarea,
-select,
-label,
-[role="button"],
-[role="link"],
-[tabindex],
-[onclick],
-*[class*="btn"],
-*[class*="button"],
-*[class*="link"],
-*[class*="card"],
-*[class*="nav"],
-*[class*="social"],
-*[class*="team"],
-*[class*="feature"],
-*[class*="clickable"],
-*[class*="toggle"],
-*[class*="menu"],
-*[class*="cta"] {
-    cursor: none !important;
-}
+
 
 ul {
     list-style: none;
@@ -226,11 +202,10 @@ img {
 .orb {
     position: absolute;
     border-radius: 50%;
-    aspect-ratio: 1 / 1;
-    filter: blur(80px);
-    opacity: 0.5;
-    animation: floatOrb 30s ease-in-out infinite;
-    will-change: transform;
+    filter: blur(60px);
+    opacity: 0.4;
+    animation: floatOrb 45s linear infinite;
+    transform: translateZ(0);
 }
 
 .orb-1 {
@@ -262,35 +237,19 @@ img {
 
 @keyframes floatOrb {
     0% {
-        transform: translate(0, 0) scale(1) rotate(0deg);
-    }
-
-    25% {
-        transform: translate(80px, -60px) scale(1.1) rotate(90deg);
+        transform: translate(0, 0) translateZ(0);
     }
 
     50% {
-        transform: translate(-40px, 80px) scale(0.95) rotate(180deg);
-    }
-
-    75% {
-        transform: translate(-80px, -40px) scale(1.05) rotate(270deg);
+        transform: translate(30px, -30px) translateZ(0);
     }
 
     100% {
-        transform: translate(0, 0) scale(1) rotate(360deg);
+        transform: translate(0, 0) translateZ(0);
     }
 }
 
-#particles {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: -1;
-}
+
 
 /* ----- Container ----- */
 .container {
@@ -377,249 +336,6 @@ img {
     background-size: 200% 100%;
     animation: shimmer 3s infinite;
     pointer-events: none;
-}
-
-/* ----- Floating Pill Navigation ----- */
-.navbar-wrapper {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-    display: flex;
-    justify-content: center;
-    padding: 20px 24px;
-    transition: padding var(--transition-medium);
-}
-
-.navbar-wrapper.scrolled {
-    padding: 12px 24px;
-}
-
-.navbar-pill {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 6px 6px 6px 18px;
-    background: rgba(10, 6, 18, 0.85);
-    border: 1px solid rgba(139, 92, 246, 0.2);
-    border-radius: 100px;
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    box-shadow:
-        0 8px 32px rgba(0, 0, 0, 0.4),
-        0 0 60px rgba(139, 92, 246, 0.08),
-        inset 0 1px 0 rgba(255, 255, 255, 0.05);
-    transition: all var(--transition-medium);
-    width: auto;
-}
-
-.navbar-wrapper.scrolled .navbar-pill {
-    padding: 5px 5px 5px 14px;
-    gap: 10px;
-    background: rgba(5, 2, 10, 0.95);
-    border-color: rgba(139, 92, 246, 0.3);
-    box-shadow:
-        0 12px 40px rgba(0, 0, 0, 0.5),
-        0 0 80px rgba(139, 92, 246, 0.12);
-}
-
-.nav-logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-family: var(--font-heading);
-    font-weight: 700;
-    font-size: 1.1rem;
-    color: var(--color-text);
-    transition: var(--transition-fast);
-    white-space: nowrap;
-}
-
-.nav-logo:hover {
-    transform: scale(1.02);
-}
-
-.logo-icon-wrapper {
-    width: 36px;
-    height: 36px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--gradient-primary);
-    border-radius: 10px;
-    transition: var(--transition-fast);
-}
-
-.navbar-wrapper.scrolled .logo-icon-wrapper {
-    width: 32px;
-    height: 32px;
-    border-radius: 8px;
-}
-
-.logo-icon-svg {
-    width: 20px;
-    height: 20px;
-    color: white;
-}
-
-.navbar-wrapper.scrolled .logo-icon-svg {
-    width: 18px;
-    height: 18px;
-}
-
-.navbar-wrapper.scrolled .nav-logo {
-    font-size: 1rem;
-}
-
-.nav-menu {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    margin: 0 auto;
-    padding: 4px;
-    background: rgba(255, 255, 255, 0.03);
-    border-radius: 50px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.navbar-wrapper.scrolled .nav-menu {
-    gap: 2px;
-    padding: 3px;
-}
-
-.nav-link {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    padding: 10px 16px;
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: var(--color-text-muted);
-    border-radius: 50px;
-    transition: all var(--transition-fast);
-    white-space: nowrap;
-}
-
-.navbar-wrapper.scrolled .nav-link {
-    padding: 8px 14px;
-    font-size: 0.85rem;
-}
-
-.nav-icon {
-    width: 16px;
-    height: 16px;
-    opacity: 0.7;
-    transition: var(--transition-fast);
-}
-
-.navbar-wrapper.scrolled .nav-icon {
-    width: 14px;
-    height: 14px;
-}
-
-.nav-link:hover {
-    color: var(--color-text);
-    background: rgba(139, 92, 246, 0.15);
-}
-
-.nav-link:hover .nav-icon {
-    opacity: 1;
-}
-
-.nav-link-active {
-    color: var(--color-text);
-    background: rgba(139, 92, 246, 0.2);
-    border: 1px solid rgba(139, 92, 246, 0.3);
-}
-
-.nav-link-active .nav-icon {
-    opacity: 1;
-    color: var(--color-primary-light);
-}
-
-.nav-cta-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    padding: 12px 24px;
-    font-family: var(--font-body);
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: var(--color-text);
-    background: var(--gradient-primary);
-    border: none;
-    border-radius: 100px;
-    cursor: pointer;
-    transition: all var(--transition-fast);
-    white-space: nowrap;
-    flex-shrink: 0;
-    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
-    position: relative;
-    overflow: hidden;
-    margin: 0;
-}
-
-.nav-cta-btn .btn-icon {
-    width: 16px;
-    height: 16px;
-    flex-shrink: 0;
-}
-
-.navbar-wrapper.scrolled .nav-cta-btn {
-    padding: 10px 20px;
-    font-size: 0.85rem;
-    gap: 6px;
-}
-
-.navbar-wrapper.scrolled .nav-cta-btn .btn-icon {
-    width: 14px;
-    height: 14px;
-}
-
-.nav-cta-btn::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
-    transition: left 0.5s ease;
-}
-
-.nav-cta-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(139, 92, 246, 0.5);
-}
-
-.nav-cta-btn:hover::before {
-    left: 100%;
-}
-
-.nav-toggle {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 8px;
-    border-radius: 8px;
-    transition: var(--transition-fast);
-}
-
-.nav-toggle:hover {
-    background: rgba(255, 255, 255, 0.05);
-}
-
-.nav-toggle span {
-    width: 22px;
-    height: 2px;
-    background: var(--color-text);
-    border-radius: 2px;
-    transition: var(--transition-fast);
 }
 
 /* ----- Buttons ----- */

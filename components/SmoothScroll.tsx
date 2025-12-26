@@ -1,7 +1,12 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, createContext, useContext } from 'react';
 import Lenis from 'lenis';
+
+// Create context to share Lenis instance
+const LenisContext = createContext<Lenis | null>(null);
+
+export const useLenis = () => useContext(LenisContext);
 
 interface SmoothScrollProps {
     children: React.ReactNode;
@@ -11,15 +16,18 @@ export default function SmoothScroll({ children }: SmoothScrollProps) {
     const lenisRef = useRef<Lenis | null>(null);
 
     useEffect(() => {
-        // Initialize Lenis smooth scroll
+        // Initialize Lenis with premium settings
         lenisRef.current = new Lenis({
-            duration: 1.2,
-            easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Expo easing
+            duration: 1.4,
+            easing: (t: number) => {
+                // Custom easing - smooth and elegant
+                return t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
+            },
             orientation: 'vertical',
             gestureOrientation: 'vertical',
             smoothWheel: true,
-            wheelMultiplier: 1,
-            touchMultiplier: 2,
+            wheelMultiplier: 0.8,
+            touchMultiplier: 1.5,
             infinite: false,
         });
 
@@ -31,34 +39,19 @@ export default function SmoothScroll({ children }: SmoothScrollProps) {
 
         requestAnimationFrame(raf);
 
-        // Handle anchor links for smooth scrolling
-        const handleAnchorClick = (e: MouseEvent) => {
-            const target = e.target as HTMLElement;
-            const anchor = target.closest('a[href^="#"]') as HTMLAnchorElement;
-
-            if (anchor) {
-                const href = anchor.getAttribute('href');
-                if (href && href !== '#') {
-                    e.preventDefault();
-                    const targetElement = document.querySelector(href);
-                    if (targetElement) {
-                        lenisRef.current?.scrollTo(targetElement as HTMLElement, {
-                            offset: -80, // Account for navbar
-                            duration: 1.5,
-                        });
-                    }
-                }
-            }
-        };
-
-        document.addEventListener('click', handleAnchorClick);
+        // Make Lenis globally accessible for navbar
+        (window as unknown as { lenis: Lenis }).lenis = lenisRef.current;
 
         // Cleanup
         return () => {
             lenisRef.current?.destroy();
-            document.removeEventListener('click', handleAnchorClick);
+            delete (window as unknown as { lenis?: Lenis }).lenis;
         };
     }, []);
 
-    return <>{children}</>;
+    return (
+        <LenisContext.Provider value={lenisRef.current}>
+            {children}
+        </LenisContext.Provider>
+    );
 }
