@@ -86,8 +86,8 @@ export function getAvatarUrl(user: DiscordUser): string {
     if (!user.avatar) {
         return `https://cdn.discordapp.com/embed/avatars/${Number(user.id) % 5}.png`;
     }
-    // Use size=64 for 48px display (1.33x for retina), avoid GIFs for performance
-    const ext = 'webp'; // Always use WebP for smaller size
+    // Keep GIF for animated avatars, use WebP for static (smaller size)
+    const ext = user.avatar.startsWith('a_') ? 'gif' : 'webp';
     return `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.${ext}?size=64`;
 }
 
