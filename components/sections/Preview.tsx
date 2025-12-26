@@ -47,10 +47,10 @@ export default function Preview() {
     // Mouse tracking for 3D tilt
     const mouseX = useMotionValue(0);
     const mouseY = useMotionValue(0);
-    const springX = useSpring(mouseX, { stiffness: 100, damping: 30 });
-    const springY = useSpring(mouseY, { stiffness: 100, damping: 30 });
-    const rotateX = useTransform(springY, [-300, 300], [10, -10]);
-    const rotateY = useTransform(springX, [-300, 300], [-15, 15]);
+    const springX = useSpring(mouseX, { stiffness: 80, damping: 25 });
+    const springY = useSpring(mouseY, { stiffness: 80, damping: 25 });
+    const rotateX = useTransform(springY, [-400, 400], [8, -8]);
+    const rotateY = useTransform(springX, [-400, 400], [-12, 12]);
 
     const handleMouseMove = (e: React.MouseEvent) => {
         if (!sectionRef.current) return;
@@ -140,18 +140,67 @@ export default function Preview() {
                 .preview-tilt-card {
                     position: absolute;
                     inset: 0;
-                    border-radius: 20px;
+                    border-radius: 24px;
                     overflow: hidden;
-                    border: 1px solid rgba(255, 255, 255, 0.1);
                     background: #0a0614;
+                    /* Modern Border & Reflection */
+                    border: 1px solid rgba(255, 255, 255, 0.08);
                     box-shadow: 
-                        0 20px 40px rgba(0, 0, 0, 0.5),
-                        0 0 30px rgba(139, 92, 246, 0.1);
+                        0 30px 60px -12px rgba(0, 0, 0, 0.5),
+                        0 18px 36px -18px rgba(0, 0, 0, 0.5),
+                        0 0 40px -10px rgba(139, 92, 246, 0.15);
                     cursor: pointer;
                     /* Performance optimizations */
                     will-change: transform, opacity;
                     backface-visibility: hidden;
                     -webkit-backface-visibility: hidden;
+                }
+
+                /* Inner Glow / Glass Border Effect */
+                .preview-tilt-card::before {
+                    content: '';
+                    position: absolute;
+                    inset: 0;
+                    border-radius: 24px;
+                    padding: 1px;
+                    background: linear-gradient(
+                        135deg, 
+                        rgba(255, 255, 255, 0.15), 
+                        transparent 40%, 
+                        transparent 60%, 
+                        rgba(139, 92, 246, 0.2)
+                    );
+                    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+                    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+                    -webkit-mask-composite: xor;
+                    mask-composite: exclude;
+                    pointer-events: none;
+                    z-index: 2;
+                }
+
+                /* Light Sweep / Lens Flare Effect */
+                .preview-tilt-card::after {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: -100%;
+                    width: 50%;
+                    height: 100%;
+                    background: linear-gradient(
+                        90deg,
+                        transparent,
+                        rgba(255, 255, 255, 0.05),
+                        transparent
+                    );
+                    transform: skewX(-25deg);
+                    transition: none;
+                    pointer-events: none;
+                    z-index: 3;
+                }
+
+                .preview-tilt-card:hover::after {
+                    left: 200%;
+                    transition: left 0.8s ease-in-out;
                 }
 
                 .preview-tilt-card img {
@@ -289,22 +338,35 @@ export default function Preview() {
                                             <motion.div
                                                 key={img.id}
                                                 className="preview-tilt-card"
-                                                initial={{ opacity: 0, scale: 0.8, z: -100, x: isNext ? 100 : -100 }}
-                                                animate={{
-                                                    opacity: isActive ? 1 : 0.3,
-                                                    scale: isActive ? 1 : 0.8,
-                                                    z: isActive ? 0 : -150,
-                                                    x: isActive ? 0 : (isNext ? 60 : -60),
-                                                    y: isActive ? 0 : 10,
-                                                    rotateY: isActive ? 0 : (isNext ? 8 : -8),
-                                                    filter: isActive ? 'blur(0px)' : 'blur(4px)',
+                                                initial={{
+                                                    opacity: 0,
+                                                    scale: 0.95,
+                                                    z: -100,
+                                                    x: isNext ? 60 : -60,
+                                                    rotateY: isNext ? 10 : -10
                                                 }}
-                                                exit={{ opacity: 0, scale: 0.5, z: -300, transition: { duration: 0.6 } }}
+                                                animate={{
+                                                    opacity: isActive ? 1 : 0.4,
+                                                    scale: isActive ? 1 : 0.88,
+                                                    z: isActive ? 0 : -150,
+                                                    x: isActive ? 0 : (isNext ? 50 : -50),
+                                                    y: isActive ? 0 : 20,
+                                                    rotateY: isActive ? 0 : (isNext ? 8 : -8),
+                                                    filter: isActive ? 'blur(0px)' : 'blur(8px)',
+                                                }}
+                                                exit={{
+                                                    opacity: 0,
+                                                    scale: 0.9,
+                                                    z: -200,
+                                                    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
+                                                }}
                                                 transition={{
                                                     type: 'spring',
-                                                    stiffness: 120,
-                                                    damping: 20,
-                                                    opacity: { duration: 0.8 }
+                                                    stiffness: 45,
+                                                    damping: 22,
+                                                    mass: 1.5,
+                                                    opacity: { duration: 0.8 },
+                                                    filter: { duration: 1.0 }
                                                 }}
                                                 style={{ zIndex: isActive ? 10 : 1 }}
                                                 onClick={() => setActiveIdx(i)}
