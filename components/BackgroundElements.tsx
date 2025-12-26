@@ -1,4 +1,6 @@
-import LiquidEther from './LiquidEther';
+'use client';
+
+import dynamic from 'next/dynamic';
 
 // ============================================
 // PERFORMANCE CONFIG
@@ -6,6 +8,13 @@ import LiquidEther from './LiquidEther';
 const ENABLE_LIQUID_ETHER = true; // Set to true for liquid effect (heavy on GPU)
 const ENABLE_ORBS = true;          // Floating orb animations
 // ============================================
+
+// Lazy load LiquidEther (heavy Three.js component - ~46KB)
+// This reduces initial bundle size and improves LCP
+const LiquidEther = dynamic(() => import('./LiquidEther'), {
+    ssr: false,
+    loading: () => null, // No loading state to avoid layout shift
+});
 
 export default function BackgroundElements() {
     return (
