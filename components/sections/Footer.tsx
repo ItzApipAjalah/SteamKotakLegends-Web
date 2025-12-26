@@ -11,6 +11,7 @@ import {
     getDecorationUrl,
     getClanBadgeUrl
 } from '@/app/api/discord/types';
+import ProfileCardModal from '@/components/ProfileCardModal';
 
 const quickLinks = [
     { name: 'Features', href: '#features' },
@@ -21,6 +22,18 @@ const quickLinks = [
 export default function Footer() {
     const [developers, setDevelopers] = useState<Developer[]>([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [selectedDeveloper, setSelectedDeveloper] = useState<Developer | null>(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const openProfileModal = (dev: Developer) => {
+        setSelectedDeveloper(dev);
+        setIsModalOpen(true);
+    };
+
+    const closeProfileModal = () => {
+        setIsModalOpen(false);
+        setTimeout(() => setSelectedDeveloper(null), 300);
+    };
 
     useEffect(() => {
         const fetchDevelopers = async () => {
@@ -135,7 +148,14 @@ export default function Footer() {
                                 const activity = lanyard?.activities?.[0];
 
                                 return (
-                                    <div key={dev.discordId} className="team-card">
+                                    <div
+                                        key={dev.discordId}
+                                        className="team-card"
+                                        onClick={() => openProfileModal(dev)}
+                                        role="button"
+                                        tabIndex={0}
+                                        onKeyDown={(e) => e.key === 'Enter' && openProfileModal(dev)}
+                                    >
                                         {/* Avatar Section */}
                                         <div className="avatar-container">
                                             {user ? (
@@ -252,6 +272,13 @@ export default function Footer() {
                     </div>
                 </div>
             </div>
+
+            {/* Profile Card Modal */}
+            <ProfileCardModal
+                developer={selectedDeveloper}
+                isOpen={isModalOpen}
+                onClose={closeProfileModal}
+            />
 
             <style jsx>{`
                 .footer-modern {
@@ -471,6 +498,7 @@ export default function Footer() {
                     border: 1px solid rgba(255, 255, 255, 0.06);
                     border-radius: 16px;
                     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                    cursor: pointer;
                 }
 
                 .team-card:hover {

@@ -9,6 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@react-three/drei": "^10.7.7",
+    "@react-three/fiber": "^9.4.2",
+    "@tsparticles/react": "^3.0.0",
+    "@tsparticles/slim": "^3.9.1",
     "clsx": "^2.1.1",
     "cobe": "^0.6.5",
     "detect-gpu-js": "^1.0.8",
@@ -18,8 +22,12 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-icons": "^5.5.0",
+    "react-parallax-tilt": "^1.7.315",
+    "react-skinview3d": "^7.0.0",
+    "skinview3d": "^3.4.1",
     "tailwind-merge": "^3.4.0",
-    "three": "^0.182.0"
+    "three": "^0.182.0",
+    "tsparticles": "^3.9.1"
   },
   "devDependencies": {
     "@types/node": "^20",
