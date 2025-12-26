@@ -28,7 +28,7 @@ const steps = [
 
 export default function HowItWorks() {
     return (
-        <section className="how-it-works" id="how-it-works">
+        <section className="how-it-works" id="how-it-works" style={{ position: 'relative', zIndex: 100, isolation: 'isolate' }}>
             <div className="container">
                 <div className="section-header">
                     <span className="section-badge">Simple Process</span>

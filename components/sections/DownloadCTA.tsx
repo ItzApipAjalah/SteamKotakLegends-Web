@@ -8,7 +8,6 @@ import { GITHUB_RELEASES_URL, DOWNLOAD_STATS } from '@/app/api/github/types';
 
 type DownloadState = 'idle' | 'downloading' | 'complete';
 
-// Icon mapping for stats
 const STAT_ICONS: Record<string, typeof HiSparkles> = {
     opensource: HiSparkles,
     secure: HiShieldCheck,
@@ -24,7 +23,6 @@ export default function DownloadCTA() {
             try {
                 const response = await fetch('/api/github');
                 const result = await response.json();
-
                 if (result.success && result.data) {
                     setReleaseData(result.data);
                 }
@@ -34,7 +32,6 @@ export default function DownloadCTA() {
                 setIsLoading(false);
             }
         };
-
         fetchReleaseData();
     }, []);
 
@@ -43,16 +40,10 @@ export default function DownloadCTA() {
             e.preventDefault();
             return;
         }
-
         setDownloadState('downloading');
-
-        // Simulate download animation for a few seconds, then show complete
         setTimeout(() => {
             setDownloadState('complete');
-            // Reset after showing complete state
-            setTimeout(() => {
-                setDownloadState('idle');
-            }, 3000);
+            setTimeout(() => setDownloadState('idle'), 3000);
         }, 2500);
     };
 
@@ -65,7 +56,6 @@ export default function DownloadCTA() {
                 </>
             );
         }
-
         switch (downloadState) {
             case 'downloading':
                 return (
@@ -145,14 +135,8 @@ export default function DownloadCTA() {
                 }
 
                 @keyframes ripple {
-                    0% {
-                        transform: scale(0.8);
-                        opacity: 1;
-                    }
-                    100% {
-                        transform: scale(1.8);
-                        opacity: 0;
-                    }
+                    0% { transform: scale(0.8); opacity: 1; }
+                    100% { transform: scale(1.8); opacity: 0; }
                 }
 
                 .download-text-animate {
@@ -177,7 +161,6 @@ export default function DownloadCTA() {
                     0% { transform: scale(0); opacity: 0; }
                     100% { transform: scale(1); opacity: 1; }
                 }
-
 
                 :global(.cta-btn-main.downloading) {
                     background: linear-gradient(135deg, #7c3aed 0%, #a78bfa 50%, #7c3aed 100%) !important;

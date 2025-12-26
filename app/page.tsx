@@ -7,6 +7,7 @@ import {
     Hero,
     Features,
     HowItWorks,
+    Preview,
     DownloadCTA,
     Footer,
     SmoothScroll
@@ -75,6 +76,7 @@ export default function Home() {
             <Hero />
             <Features />
             <HowItWorks />
+            <Preview />
             <DownloadCTA />
             <Footer />
         </SmoothScroll>
