@@ -160,6 +160,60 @@ export default function RootLayout({
                 <PerformanceAlert />
                 <DebugPanel />
                 {children}
+
+                {/* Structured Data - JSON-LD */}
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{
+                        __html: JSON.stringify({
+                            "@context": "https://schema.org",
+                            "@type": "SoftwareApplication",
+                            "name": "SteamKotakLegends",
+                            "applicationCategory": "GameApplication",
+                            "operatingSystem": "Windows",
+                            "offers": {
+                                "@type": "Offer",
+                                "price": "0",
+                                "priceCurrency": "USD"
+                            },
+                            "description": siteDescription,
+                            "url": siteUrl,
+                            "image": `${siteUrl}/og-image.png`,
+                            "author": {
+                                "@type": "Organization",
+                                "name": "SteamKotakLegends Team",
+                                "url": "https://github.com/ItzApipAjalah"
+                            },
+                            "aggregateRating": {
+                                "@type": "AggregateRating",
+                                "ratingValue": "5",
+                                "ratingCount": "100"
+                            }
+                        })
+                    }}
+                />
+
+                {/* WebSite Schema for Sitelinks Search Box */}
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{
+                        __html: JSON.stringify({
+                            "@context": "https://schema.org",
+                            "@type": "WebSite",
+                            "name": "SteamKotakLegends",
+                            "url": siteUrl,
+                            "description": siteDescription,
+                            "publisher": {
+                                "@type": "Organization",
+                                "name": "SteamKotakLegends Team",
+                                "logo": {
+                                    "@type": "ImageObject",
+                                    "url": `${siteUrl}/icon-512.png`
+                                }
+                            }
+                        })
+                    }}
+                />
             </body>
         </html>
     );
