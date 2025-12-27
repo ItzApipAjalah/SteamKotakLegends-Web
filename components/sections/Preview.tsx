@@ -42,7 +42,116 @@ import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from
 export default function Preview() {
     const [activeIdx, setActiveIdx] = useState(0);
     const [isInView, setIsInView] = useState(false);
+    const [totalGames, setTotalGames] = useState<number | null>(null);
+    const [totalUsers, setTotalUsers] = useState<number | null>(null);
+    const [totalValueSaved, setTotalValueSaved] = useState<string | null>(null);
+    const [isTyping, setIsTyping] = useState(false);
+    const [displayValue, setDisplayValue] = useState<string>('');
+    const [currencyIndex, setCurrencyIndex] = useState(0); // 0=USD, 1=IDR, 2=JPY, 3=MYR, 4=SGD
     const sectionRef = useRef<HTMLElement>(null);
+    const [exchangeRates, setExchangeRates] = useState<{ IDR: number; JPY: number; MYR: number; SGD: number }>({
+        IDR: 16000, JPY: 157, MYR: 4.47, SGD: 1.35
+    });
+
+    // Fetch real-time exchange rates
+    useEffect(() => {
+        fetch('https://api.frankfurter.app/latest?from=USD&to=IDR,JPY,MYR,SGD')
+            .then(res => res.json())
+            .then(data => {
+                if (data.rates) {
+                    setExchangeRates({
+                        IDR: data.rates.IDR || 16000,
+                        JPY: data.rates.JPY || 157,
+                        MYR: data.rates.MYR || 4.47,
+                        SGD: data.rates.SGD || 1.35,
+                    });
+                }
+            })
+            .catch(err => console.error('Failed to fetch exchange rates:', err));
+    }, []);
+
+    // Convert USD string to other currencies
+    const convertCurrency = (usdString: string, currency: number): string => {
+        const usdAmount = parseFloat(usdString.replace('$', '').replace(',', ''));
+
+        switch (currency) {
+            case 1: // IDR
+                const idrAmount = Math.round(usdAmount * exchangeRates.IDR);
+                return `Rp ${idrAmount.toLocaleString('id-ID')}`;
+            case 2: // JPY
+                const jpyAmount = Math.round(usdAmount * exchangeRates.JPY);
+                return `¥${jpyAmount.toLocaleString('ja-JP')}`;
+            case 3: // MYR
+                const myrAmount = (usdAmount * exchangeRates.MYR).toFixed(2);
+                return `RM ${parseFloat(myrAmount).toLocaleString('ms-MY')}`;
+            case 4: // SGD
+                const sgdAmount = (usdAmount * exchangeRates.SGD).toFixed(2);
+                return `S$${parseFloat(sgdAmount).toLocaleString('en-SG')}`;
+            default: // USD
+                return usdString;
+        }
+    };
+
+    // Typing animation effect with delete first
+    useEffect(() => {
+        if (!totalValueSaved) return;
+
+        const targetValue = convertCurrency(totalValueSaved, currencyIndex);
+        const currentValue = displayValue || '';
+
+        setIsTyping(true);
+
+        // Phase 1: Delete current text
+        let deleteIndex = currentValue.length;
+        const deleteInterval = setInterval(() => {
+            if (deleteIndex > 0) {
+                deleteIndex--;
+                setDisplayValue(currentValue.slice(0, deleteIndex));
+            } else {
+                clearInterval(deleteInterval);
+
+                // Phase 2: Type new text
+                let typeIndex = 0;
+                const typeInterval = setInterval(() => {
+                    if (typeIndex <= targetValue.length) {
+                        setDisplayValue(targetValue.slice(0, typeIndex));
+                        typeIndex++;
+                    } else {
+                        clearInterval(typeInterval);
+                        setIsTyping(false);
+                    }
+                }, 40);
+            }
+        }, 30);
+
+        return () => clearInterval(deleteInterval);
+    }, [currencyIndex, totalValueSaved]);
+
+    // Cycle through currencies every 4 seconds
+    useEffect(() => {
+        if (!totalValueSaved) return;
+
+        const toggleInterval = setInterval(() => {
+            setCurrencyIndex(prev => (prev + 1) % 5);
+        }, 4000);
+
+        return () => clearInterval(toggleInterval);
+    }, [totalValueSaved]);
+
+
+    // Fetch stats
+    useEffect(() => {
+        fetch('https://steam-kotak-legends-backend.vercel.app/stats/total')
+            .then(res => res.json())
+            .then(data => {
+                if (data.success && data.data) {
+                    if (data.data.grand_total) setTotalGames(data.data.grand_total);
+                    if (data.data.total_user) setTotalUsers(data.data.total_user);
+                    if (data.data.total_value_saved) setTotalValueSaved(data.data.total_value_saved);
+                }
+            })
+            .catch(err => console.error('Failed to fetch stats:', err));
+    }, []);
 
     // Mouse tracking for 3D tilt - optimized for performance
     const mouseX = useMotionValue(0);
@@ -402,7 +511,33 @@ export default function Preview() {
                             >
                                 Experience the future of gaming management. Our interface is designed
                                 to be as powerful as it is beautiful. Fast, and always evolving.
+                                {(totalGames !== null || totalUsers !== null || totalValueSaved !== null) && (
+                                    <>
+                                        <span style={{ display: 'block', marginTop: '12px', color: 'rgba(255, 255, 255, 0.5)' }}>
+                                            {totalGames !== null && (
+                                                <><span style={{ color: '#a78bfa', fontWeight: 600 }}>{totalGames.toLocaleString()}</span> games injected</>)}
+                                            {totalGames !== null && totalUsers !== null && ' • '}
+                                            {totalUsers !== null && (
+                                                <><span style={{ color: '#a78bfa', fontWeight: 600 }}>{totalUsers.toLocaleString()}</span> users</>)}
+                                            {(totalGames !== null || totalUsers !== null) && totalValueSaved !== null && ' • '}
+                                            {totalValueSaved !== null && (
+                                                <>
+                                                    <span style={{
+                                                        color: '#22c55e',
+                                                        fontWeight: 600,
+                                                    }}>
+                                                        {displayValue}
+                                                        {isTyping && <span style={{ opacity: 0.7 }}>|</span>}
+                                                    </span> saved
+                                                </>)}
+                                        </span>
+                                        <span style={{ display: 'block', marginTop: '6px', fontSize: '0.75rem', color: 'rgba(255, 255, 255, 0.25)' }}>
+                                            Stats refresh every hour
+                                        </span>
+                                    </>
+                                )}
                             </motion.p>
+
 
                             <Globe3D size={420} />
 
