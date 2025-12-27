@@ -5,6 +5,8 @@ export { default as FeatureCard } from './FeatureCard';
 export { default as SmoothScroll } from './SmoothScroll';
 export { default as PerformanceAlert } from './PerformanceAlert';
 export { default as DebugPanel } from './DebugPanel';
+export { default as ContextMenu } from './ContextMenu';
+export { default as DevToolsBlocker } from './DevToolsBlocker';
 
 // Sections
 export { default as Hero } from './sections/Hero';

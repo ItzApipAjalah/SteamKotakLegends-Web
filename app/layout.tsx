@@ -1,7 +1,8 @@
 import type { Metadata, Viewport } from 'next';
 import { Space_Grotesk, Inter } from 'next/font/google';
 import './globals.css';
-import { PerformanceAlert, DebugPanel } from '@/components';
+import { PerformanceAlert, DebugPanel, DevToolsBlocker } from '@/components';
+import ContextMenuProvider from '@/components/ContextMenuProvider';
 
 const spaceGrotesk = Space_Grotesk({
     subsets: ['latin'],
@@ -157,9 +158,12 @@ export default function RootLayout({
                 <link rel="canonical" href={siteUrl} />
             </head>
             <body>
-                <PerformanceAlert />
-                <DebugPanel />
-                {children}
+                <ContextMenuProvider>
+                    <DevToolsBlocker />
+                    <PerformanceAlert />
+                    <DebugPanel />
+                    {children}
+                </ContextMenuProvider>
 
                 {/* Structured Data - JSON-LD */}
                 <script
