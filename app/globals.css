@@ -1742,3 +1742,87 @@ img {
 .skeleton-discord {
     opacity: 0.2;
 }
+
+/* =====================================================
+   MOBILE PERFORMANCE OPTIMIZATIONS
+   Disable heavy animations on mobile only
+   ===================================================== */
+
+/* Reduced Motion on Mobile - respects user preference only on mobile */
+@media (max-width: 768px) and (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Mobile - Disable heavy animations to improve performance */
+@media (max-width: 768px) {
+
+    /* Disable floating orbs */
+    .floating-orbs,
+    .orb,
+    .orb-1,
+    .orb-2,
+    .orb-3 {
+        display: none !important;
+    }
+
+    /* Disable heavy shimmer animations */
+    .shimmer-text::before,
+    .shimmer-text::after {
+        animation: none !important;
+    }
+
+    /* Disable floating card animations */
+    .float-card,
+    .floating-cards {
+        animation: none !important;
+    }
+
+    /* Reduce blur effects (very heavy on mobile) */
+    .glass-effect,
+    .glass-card,
+    .nav-glass {
+        backdrop-filter: blur(8px) !important;
+        -webkit-backdrop-filter: blur(8px) !important;
+    }
+
+    /* Disable 3D transforms on mobile */
+    .preview-tilt-card {
+        transform: none !important;
+    }
+
+    /* Simplify scroll indicator */
+    .scroll-indicator,
+    .scroll-arrow {
+        animation: none !important;
+    }
+
+    /* Disable glow pulse effects */
+    .glow-pulse {
+        animation: none !important;
+    }
+
+    /* Reduce shadows for performance */
+    .feature-card,
+    .preview-card,
+    .team-card {
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2) !important;
+    }
+
+    /* Disable hero visual floating effects */
+    .hero-visual .float-card {
+        animation: none !important;
+        transform: none !important;
+    }
+
+    /* Simplify mockup glow */
+    .mockup-glow {
+        display: none !important;
+    }
+}

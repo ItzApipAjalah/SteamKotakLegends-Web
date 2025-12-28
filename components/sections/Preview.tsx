@@ -38,8 +38,10 @@ const APP_PREVIEWS = [
 ];
 
 import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import { useIsMobile } from '@/hooks/useIsMobile';
 
 export default function Preview() {
+    const isMobile = useIsMobile();
     const [activeIdx, setActiveIdx] = useState(0);
     const [isInView, setIsInView] = useState(false);
     const [totalGames, setTotalGames] = useState<number | null>(null);
@@ -153,16 +155,17 @@ export default function Preview() {
             .catch(err => console.error('Failed to fetch stats:', err));
     }, []);
 
-    // Mouse tracking for 3D tilt - optimized for performance
+    // Mouse tracking for 3D tilt - disabled on mobile for performance
     const mouseX = useMotionValue(0);
     const mouseY = useMotionValue(0);
-    const springX = useSpring(mouseX, { stiffness: 50, damping: 30 }); // Smoother, less CPU
+    const springX = useSpring(mouseX, { stiffness: 50, damping: 30 });
     const springY = useSpring(mouseY, { stiffness: 50, damping: 30 });
-    const rotateX = useTransform(springY, [-400, 400], [5, -5]); // Reduced tilt range
+    // Note: isMobile check is done in handlers, transforms always work on desktop
+    const rotateX = useTransform(springY, [-400, 400], [5, -5]);
     const rotateY = useTransform(springX, [-400, 400], [-8, 8]);
 
     const handleMouseMove = (e: React.MouseEvent) => {
-        if (!sectionRef.current) return;
+        if (!sectionRef.current || isMobile) return;
         const rect = sectionRef.current.getBoundingClientRect();
         const centerX = rect.left + rect.width / 2;
         const centerY = rect.top + rect.height / 2;
@@ -171,6 +174,7 @@ export default function Preview() {
     };
 
     const handleMouseLeave = () => {
+        if (isMobile) return;
         mouseX.set(0);
         mouseY.set(0);
     };

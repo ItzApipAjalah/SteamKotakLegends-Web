@@ -2,20 +2,23 @@
 
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
+import { useIsMobile } from '@/hooks/useIsMobile';
 
 interface DownloadIndicatorProps {
     isVisible: boolean;
 }
 
 export default function DownloadIndicator3D({ isVisible }: DownloadIndicatorProps) {
+    const isMobile = useIsMobile();
     const containerRef = useRef<HTMLDivElement>(null);
     const sceneRef = useRef<{
         renderer: THREE.WebGLRenderer;
         animationId: number;
     } | null>(null);
 
+    // Skip rendering on mobile for performance
     useEffect(() => {
-        if (!containerRef.current || !isVisible) return;
+        if (!containerRef.current || !isVisible || isMobile) return;
 
         // Scene setup
         const scene = new THREE.Scene();
@@ -312,9 +315,10 @@ export default function DownloadIndicator3D({ isVisible }: DownloadIndicatorProp
                 containerRef.current.innerHTML = '';
             }
         };
-    }, [isVisible]);
+    }, [isVisible, isMobile]);
 
-    if (!isVisible) return null;
+    // Completely hide on mobile
+    if (!isVisible || isMobile) return null;
 
     return (
         <>

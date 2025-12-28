@@ -9,6 +9,7 @@ import { FaTimes, FaGithub, FaGamepad, FaSpotify, FaInstagram, FaGlobe } from 'r
 import { HiSparkles, HiStatusOnline, HiLightningBolt } from 'react-icons/hi';
 import type { Developer } from '@/app/api/discord/types';
 import { STATUS_COLORS, getAvatarUrl, getDecorationUrl } from '@/app/api/discord/types';
+import { useIsMobile } from '@/hooks/useIsMobile';
 
 // Team profile images mapping
 const TEAM_IMAGES: Record<string, string> = {
@@ -67,6 +68,7 @@ interface ProfileCardModalProps {
 }
 
 function ProfileCardModal({ developer, isOpen, onClose }: ProfileCardModalProps) {
+    const isMobile = useIsMobile();
     const [mounted, setMounted] = useState(false);
 
     // Mount check for portal
@@ -169,14 +171,15 @@ function ProfileCardModal({ developer, isOpen, onClose }: ProfileCardModalProps)
                             <FaTimes size={18} />
                         </button>
 
-                        {/* 3D Tilt Card - Simplified for performance */}
+                        {/* 3D Tilt Card - Disabled on mobile for performance */}
                         <Tilt
-                            tiltMaxAngleX={12}
-                            tiltMaxAngleY={12}
+                            tiltEnable={!isMobile}
+                            tiltMaxAngleX={isMobile ? 0 : 12}
+                            tiltMaxAngleY={isMobile ? 0 : 12}
                             perspective={1000}
-                            scale={1.02}
+                            scale={isMobile ? 1 : 1.02}
                             transitionSpeed={400}
-                            glareEnable={true}
+                            glareEnable={!isMobile}
                             glareMaxOpacity={0.15}
                             glareColor="#5865f2"
                             glarePosition="all"
