@@ -50,7 +50,7 @@ export default function PerformanceAlert() {
                     id: 'mobile-warning',
                     type: 'mobile',
                     title: 'Mobile Device Detected',
-                    message: 'Website ini tidak dirancang untuk mobile, mungkin ada performance issue.',
+                    message: 'This website is not designed for mobile devices, so there may be performance issues.',
                     icon: 'mobile',
                 });
             }
@@ -63,7 +63,7 @@ export default function PerformanceAlert() {
                         id: 'gpu-warning',
                         type: 'gpu',
                         title: 'GPU Acceleration Off',
-                        message: 'Nyalakan GPU acceleration untuk performance yang lebih baik.',
+                        message: 'Enable GPU acceleration for better performance.',
                         icon: 'gpu',
                     });
                 }
