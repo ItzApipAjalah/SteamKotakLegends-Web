@@ -1,10 +1,16 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import dynamic from 'next/dynamic';
 import { HiDownload, HiShieldCheck, HiSparkles, HiCheck } from 'react-icons/hi';
 import { FaGithub } from 'react-icons/fa';
 import type { ReleaseData } from '@/app/api/github/types';
 import { GITHUB_RELEASES_URL, DOWNLOAD_STATS } from '@/app/api/github/types';
+
+// Dynamic import for 3D indicator (client-only)
+const DownloadIndicator3D = dynamic(() => import('@/components/DownloadIndicator3D'), {
+    ssr: false,
+});
 
 type DownloadState = 'idle' | 'downloading' | 'complete';
 
@@ -95,6 +101,9 @@ export default function DownloadCTA() {
 
     return (
         <>
+            {/* 3D Download Indicator */}
+            <DownloadIndicator3D isVisible={downloadState === 'downloading' || downloadState === 'complete'} />
+
             <style jsx>{`
                 .download-spinner {
                     width: 20px;
