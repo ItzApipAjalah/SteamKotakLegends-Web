@@ -42,16 +42,89 @@ export const metadata: Metadata = {
     },
     description: siteDescription,
     keywords: [
-        'Steam',
-        'game injection',
-        'Steam library',
-        'game manager',
-        'Steam tools',
-        'multiplayer',
-        'manifest download',
-        'KotakLegends',
-        'Steam companion',
-        'game downloader',
+        // Core brand keywords
+        'Steam', 'SteamKotakLegends', 'Steam Kotak Legends', 'Kotak Legends',
+        'Steam tools', 'Steam utility', 'Steam helper', 'Steam toolkit',
+
+        // Game injection keywords
+        'game injection', 'inject game to Steam', 'add game to Steam library',
+        'Steam game injection', 'inject cracked games Steam', 'Steam inject tool',
+        'add non-Steam games', 'Steam library injection', 'game injector',
+
+        // Library management
+        'Steam library manager', 'game manager', 'Steam companion', 'Steam organizer',
+        'game collection manager', 'Steam library organizer', 'library tool',
+
+        // Manifest & Depot
+        'manifest download', 'Steam manifest', 'depot download', 'Steam depot',
+        'manifest downloader', 'depot downloader', 'SteamDB manifest',
+        'download game manifest', 'Steam CDN', 'Steam content download',
+
+        // Multiplayer & Online
+        'multiplayer fix', 'online fix', 'Steam online fix', 'LAN fix',
+        'play multiplayer cracked games', 'online multiplayer pirated games',
+        'crack multiplayer', 'multiplayer crack', 'Steam online crack',
+        'SmartSteamEmu', 'SSE', 'Goldberg', 'Steam emu',
+
+        // AppID & Spoofer
+        'AppID spoofer', 'Steam AppID', 'game spoofer', 'AppID changer',
+        'Steam ID spoofer', 'fake Steam AppID', 'spoof game ID',
+
+        // Download & Free games
+        'game downloader', 'Steam game download', 'free games', 'free PC games',
+        'download free games', 'game download tool', 'Steam download manager',
+        'free game download 2024', 'free game download 2025',
+
+        // Unlock & Crack
+        'Steam unlocker', 'DLC unlocker', 'Steam DLC', 'unlock all DLC',
+        'DLC unlocker tool', 'Steam DLC downloader', 'free DLC',
+        'Steam emulator', 'Steam crack alternative', 'crack Steam games',
+        'CreamAPI', 'Cream API', 'DLC unlock', 'unlock Steam DLC',
+
+        // Gaming general
+        'PC games', 'gaming tools', 'gaming utility', 'PC gaming',
+        'Steam alternative', 'game library', 'game collection',
+        'pirated games Steam', 'cracked games Steam', 'repack games',
+        'FitGirl repack', 'DODI repack', 'game repack',
+
+        // Specific sites/alternatives
+        'cs.rin.ru', 'steamunlocked alternative', 'fitgirl alternative',
+        'game piracy', 'piracy tools', 'Steam piracy',
+
+        // Indonesian keywords (important for local SEO)
+        'download game gratis', 'game PC gratis', 'Steam gratis',
+        'inject game Steam', 'cara inject game Steam', 'tutorial inject Steam',
+        'game bajakan Steam', 'Steam bajakan', 'crack game Steam',
+        'download manifest Steam', 'game multiplayer gratis',
+        'main game bajakan online', 'multiplayer game bajakan',
+        'download game PC gratis 2024', 'download game PC gratis 2025',
+        'game gratis terbaru', 'game PC terbaru gratis',
+        'cara main game bajakan multiplayer', 'tutorial Steam bajakan',
+        'DLC gratis Steam', 'unlock DLC gratis', 'game full DLC gratis',
+        'download game ringan', 'game PC ringan gratis',
+
+        // Brand & Author
+        'KotakLegends', 'Kotak Legends', 'AMWP', 'KizuTOD',
+        'kotaklegend', 'kotak legend', 'SteamKotak',
+
+        // Long-tail keywords
+        'how to add games to Steam', 'Steam library tool',
+        'Steam game injector', 'Steam manifest downloader',
+        'play cracked games on Steam', 'online multiplayer fix',
+        'how to play pirated games on Steam', 'add cracked games to Steam library',
+        'Steam achievements for cracked games', 'Steam overlay for cracked games',
+        'how to unlock all DLC Steam', 'how to get free DLC Steam',
+        'best Steam tools 2024', 'best Steam tools 2025',
+        'Steam game manager free', 'Steam library manager free download',
+
+        // Technical keywords
+        'Steam API', 'Steamworks', 'Steam SDK', 'Steam integration',
+        'Steam overlay', 'Steam achievements', 'Steam cloud save',
+        'Steam workshop', 'Steam mods', 'mod manager Steam',
+
+        // Game-specific (popular games)
+        'GTA V Steam inject', 'Red Dead Redemption 2 Steam', 'Cyberpunk 2077 Steam',
+        'Elden Ring Steam inject', 'Hogwarts Legacy Steam', 'Baldurs Gate 3 Steam',
     ],
     authors: [
         { name: 'AMWP', url: 'https://github.com/ItzApipAjalah' },
@@ -147,6 +220,11 @@ export default function RootLayout({
             <head>
                 {/* Google Search Console Verification */}
                 <meta name="google-site-verification" content="51091D40RACwDnOAxluD4D85HG7rZWzw3z-jEw1j5vA" />
+
+                {/* Additional Image Meta Tags for Google */}
+                <meta property="og:image:secure_url" content={`${siteUrl}/og-image.png`} />
+                <meta name="thumbnail" content={`${siteUrl}/og-image.png`} />
+                <link rel="image_src" href={`${siteUrl}/og-image.png`} />
 
                 {/* Preconnect to critical origins */}
                 <link rel="preconnect" href="https://cdn.discordapp.com" crossOrigin="anonymous" />
