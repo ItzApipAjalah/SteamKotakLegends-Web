@@ -6,7 +6,7 @@ const INTERNAL_SECRET = process.env.DEBUG_SECRET_KEY || '';
 // API Endpoints to monitor (hidden from client)
 const API_ENDPOINTS = [
     { name: 'Lanyard', url: 'https://lanyard.afifmedya.my.id/', key: 'lanyard' },
-    { name: 'FreeGames', url: 'https://steam-kotak-legends-backend.vercel.app/freegames', key: 'freegames' },
+    { name: 'FreeGames', url: 'https://sauth.kotaklegend.my.id/freegames', key: 'freegames' },
     { name: 'Cookies', url: 'https://cookies.kotaklegend.my.id/', key: 'cookies' },
 ];
 

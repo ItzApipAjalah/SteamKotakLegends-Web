@@ -141,7 +141,7 @@ export default function Preview() {
 
     // Fetch stats
     useEffect(() => {
-        fetch('https://steam-kotak-legends-backend.vercel.app/stats/total')
+        fetch('https://sauth.kotaklegend.my.id/stats/total')
             .then(res => res.json())
             .then(data => {
                 if (data.success && data.data) {
