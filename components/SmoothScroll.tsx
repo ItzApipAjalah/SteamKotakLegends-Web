@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, createContext, useContext } from 'react';
 import Lenis from 'lenis';
+import { useIsMobile } from '@/hooks/useIsMobile';
 
 // Create context to share Lenis instance
 const LenisContext = createContext<Lenis | null>(null);
@@ -13,9 +14,11 @@ interface SmoothScrollProps {
 }
 
 export default function SmoothScroll({ children }: SmoothScrollProps) {
+    const isMobile = useIsMobile();
     const lenisRef = useRef<Lenis | null>(null);
 
     useEffect(() => {
+        if (isMobile) return;
         // Initialize Lenis with premium settings
         lenisRef.current = new Lenis({
             duration: 1.4,
@@ -47,7 +50,7 @@ export default function SmoothScroll({ children }: SmoothScrollProps) {
             lenisRef.current?.destroy();
             delete (window as unknown as { lenis?: Lenis }).lenis;
         };
-    }, []);
+    }, [isMobile]);
 
     return (
         <LenisContext.Provider value={lenisRef.current}>

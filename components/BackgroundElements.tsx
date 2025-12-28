@@ -1,6 +1,7 @@
 'use client';
 
 import dynamic from 'next/dynamic';
+import { useIsMobile } from '@/hooks/useIsMobile';
 
 // ============================================
 // PERFORMANCE CONFIG
@@ -17,12 +18,18 @@ const LiquidEther = dynamic(() => import('./LiquidEther'), {
 });
 
 export default function BackgroundElements() {
+    const isMobile = useIsMobile();
+
+    // Disable heavy effects on mobile regardless of config
+    const showLiquid = ENABLE_LIQUID_ETHER && !isMobile;
+    const showOrbs = ENABLE_ORBS && !isMobile;
+
     return (
         <>
             <div className="bg-gradient"></div>
             <div className="bg-grid"></div>
 
-            {ENABLE_ORBS && (
+            {showOrbs && (
                 <div className="floating-orbs">
                     <div className="orb orb-1"></div>
                     <div className="orb orb-2"></div>
@@ -30,7 +37,7 @@ export default function BackgroundElements() {
                 </div>
             )}
 
-            {ENABLE_LIQUID_ETHER && (
+            {showLiquid && (
                 <div style={{ position: 'fixed', inset: 0, width: '100%', height: '100%', zIndex: -1, pointerEvents: 'none' }}>
                     <LiquidEther
                         colors={['#5227FF', '#FF9FFC', '#B19EEF']}

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { HiX, HiExclamation, HiDeviceMobile, HiDesktopComputer } from 'react-icons/hi';
+import { useIsMobile as useIsMobileHook } from '@/hooks/useIsMobile';
 
 interface Alert {
     id: string;
@@ -36,17 +37,13 @@ function checkGPUAcceleration(): { supported: boolean; renderer: string | null }
 }
 
 export default function PerformanceAlert() {
+    const isMobile = useIsMobileHook();
     const [alerts, setAlerts] = useState<Alert[]>([]);
     const [dismissed, setDismissed] = useState<Set<string>>(new Set());
 
     useEffect(() => {
         const checkPerformance = () => {
             const newAlerts: Alert[] = [];
-
-            // Check if mobile device
-            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-                navigator.userAgent
-            ) || window.innerWidth < 768;
 
             if (isMobile) {
                 newAlerts.push({
@@ -85,7 +82,7 @@ export default function PerformanceAlert() {
         };
 
         checkPerformance();
-    }, []);
+    }, [isMobile]);
 
     const dismissAlert = (id: string, permanent: boolean = false) => {
         if (permanent) {

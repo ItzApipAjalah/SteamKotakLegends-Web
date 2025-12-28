@@ -2,18 +2,21 @@
 
 import { useEffect, useRef, useState } from 'react';
 import createGlobe from 'cobe';
+import { useIsMobile } from '@/hooks/useIsMobile';
 
 interface GlobeProps {
     size?: number;
 }
 
 export default function Globe3D({ size = 300 }: GlobeProps) {
+    const isMobile = useIsMobile();
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const containerRef = useRef<HTMLDivElement>(null);
     const [isVisible, setIsVisible] = useState(false);
 
     // Visibility observer - pause globe when off-screen
     useEffect(() => {
+        if (isMobile) return;
         const observer = new IntersectionObserver(
             ([entry]) => setIsVisible(entry.isIntersecting),
             { threshold: 0.1 }
@@ -23,7 +26,7 @@ export default function Globe3D({ size = 300 }: GlobeProps) {
     }, []);
 
     useEffect(() => {
-        if (!isVisible || !canvasRef.current) return;
+        if (!isVisible || !canvasRef.current || isMobile) return;
 
         let phi = 0;
 
@@ -51,6 +54,8 @@ export default function Globe3D({ size = 300 }: GlobeProps) {
             globe.destroy();
         };
     }, [size, isVisible]);
+
+    if (isMobile) return null;
 
     return (
         <div
