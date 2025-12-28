@@ -141,7 +141,23 @@ export default function Footer() {
                             Meet The Team
                         </h4>
                         <div className="team-cards">
-                            {developers.map((dev) => {
+                            {/* Skeleton Loading */}
+                            {isLoading && developers.map((dev) => (
+                                <div key={dev.discordId} className="team-card team-card-skeleton">
+                                    <div className="avatar-container">
+                                        <div className="skeleton-avatar" />
+                                        <div className="status-indicator skeleton-status" />
+                                    </div>
+                                    <div className="team-info">
+                                        <div className="skeleton-text skeleton-name" />
+                                        <div className="skeleton-text skeleton-role" />
+                                        <div className="skeleton-text skeleton-username" />
+                                    </div>
+                                    <div className="team-discord skeleton-discord" />
+                                </div>
+                            ))}
+                            {/* Actual Team Cards */}
+                            {!isLoading && developers.map((dev) => {
                                 const lanyard = dev.lanyard;
                                 const user = lanyard?.discord_user;
                                 const status = lanyard?.discord_status || 'offline';

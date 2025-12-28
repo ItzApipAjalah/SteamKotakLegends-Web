@@ -1682,3 +1682,63 @@ img {
         gap: 16px;
     }
 }
+
+/* =====================================================
+   Skeleton Loading Styles
+   ===================================================== */
+
+@keyframes shimmer {
+    0% {
+        background-position: 200% 0;
+    }
+
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* Team Card Skeleton */
+.team-card-skeleton {
+    pointer-events: none;
+}
+
+.skeleton-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.05) 25%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.05) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+}
+
+.skeleton-status {
+    background: rgba(255, 255, 255, 0.1) !important;
+}
+
+.skeleton-text {
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.05) 25%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.05) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+    border-radius: 4px;
+}
+
+.skeleton-name {
+    width: 80px;
+    height: 14px;
+    margin-bottom: 6px;
+}
+
+.skeleton-role {
+    width: 60px;
+    height: 12px;
+    margin-bottom: 6px;
+}
+
+.skeleton-username {
+    width: 70px;
+    height: 11px;
+}
+
+.skeleton-discord {
+    opacity: 0.2;
+}

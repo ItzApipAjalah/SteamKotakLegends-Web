@@ -145,9 +145,9 @@ export default function Preview() {
             .then(res => res.json())
             .then(data => {
                 if (data.success && data.data) {
-                    if (data.data.grand_total) setTotalGames(data.data.grand_total);
-                    if (data.data.total_user) setTotalUsers(data.data.total_user);
-                    if (data.data.total_value_saved) setTotalValueSaved(data.data.total_value_saved);
+                    setTotalGames(data.data.grand_total ?? null);
+                    setTotalUsers(data.data.total_user ?? null);
+                    setTotalValueSaved(data.data.total_value_saved ?? null);
                 }
             })
             .catch(err => console.error('Failed to fetch stats:', err));
@@ -511,6 +511,7 @@ export default function Preview() {
                             >
                                 Experience the future of gaming management. Our interface is designed
                                 to be as powerful as it is beautiful. Fast, and always evolving.
+                                {/* Stats Data */}
                                 {(totalGames !== null || totalUsers !== null || totalValueSaved !== null) && (
                                     <>
                                         <span style={{ display: 'block', marginTop: '12px', color: 'rgba(255, 255, 255, 0.5)' }}>

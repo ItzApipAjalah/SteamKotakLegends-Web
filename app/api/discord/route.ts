@@ -9,8 +9,9 @@ async function fetchLanyardData(discordId: string): Promise<LanyardData | null> 
             next: { revalidate: 30 }, // Cache for 30 seconds
         });
 
+        // Return null for any non-ok response (including 530, 500, etc.)
         if (!response.ok) {
-            throw new Error(`Failed to fetch: ${response.status}`);
+            return null;
         }
 
         const data: LanyardResponse = await response.json();
@@ -20,11 +21,12 @@ async function fetchLanyardData(discordId: string): Promise<LanyardData | null> 
         }
 
         return null;
-    } catch (error) {
-        console.error(`Error fetching Lanyard data for ${discordId}:`, error);
+    } catch {
+        // Silently return null on any error
         return null;
     }
 }
+
 
 export async function GET() {
     try {
