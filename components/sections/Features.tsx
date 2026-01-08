@@ -63,7 +63,7 @@ export default function Features() {
                             </svg>
                         }
                         title="Manifest Download"
-                        desc="Download game manifests directly from ManifestHub and Kernelos."
+                        desc="Download game manifests directly from ManifestKotakLegend."
                     />
                     <FeatureCard
                         icon={

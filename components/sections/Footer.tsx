@@ -17,6 +17,7 @@ const quickLinks = [
     { name: 'Features', href: '#features' },
     { name: 'Download', href: '#download' },
     { name: 'GitHub', href: 'https://github.com/ItzApipAjalah/SteamKotakLegends', external: true },
+    { name: 'Manifest', href: 'https://manifest.kotaklegend.my.id/', external: true },
 ];
 
 export default function Footer() {
@@ -78,7 +79,7 @@ export default function Footer() {
                             </div>
                             <div className="brand-text">
                                 <span className="brand-name">
-                                    SteamKotak<span className="brand-accent">Legends</span>
+                                    Steam<span className="brand-accent">KotakLegend</span>
                                 </span>
                                 <span className="brand-tagline">
                                     <HiSparkles size={12} />

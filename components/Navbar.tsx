@@ -207,13 +207,13 @@ export default function Navbar() {
                         </span>
                         {!isMobile && (
                             <span style={{ letterSpacing: '-0.02em' }}>
-                                SteamKotak
+                                Steam
                                 <span style={{
                                     background: 'linear-gradient(90deg, #a855f7, #c084fc, #e879f9)',
                                     WebkitBackgroundClip: 'text',
                                     WebkitTextFillColor: 'transparent',
                                 }}>
-                                    Legends
+                                    KotakLegend
                                 </span>
                             </span>
                         )}
@@ -300,6 +300,49 @@ export default function Navbar() {
                             </svg>
                             <span>Download</span>
                         </button>
+                    )}
+
+                    {/* Desktop Manifest Getter Button */}
+                    {!isMobile && (
+                        <a
+                            href="https://manifest.kotaklegend.my.id/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                gap: scrolled ? '6px' : '8px',
+                                padding: scrolled ? '10px 20px' : '14px 28px',
+                                marginLeft: scrolled ? '2px' : '4px',
+                                fontSize: scrolled ? '0.85rem' : '0.95rem',
+                                fontWeight: 600,
+                                color: 'white',
+                                background: 'linear-gradient(135deg, #0891b2 0%, #06b6d4 50%, #22d3ee 100%)',
+                                border: 'none',
+                                borderRadius: '100px',
+                                cursor: 'pointer',
+                                boxShadow: '0 4px 20px rgba(6, 182, 212, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.2)',
+                                transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                                textDecoration: 'none',
+                            }}
+                            onMouseEnter={(e) => {
+                                e.currentTarget.style.transform = 'translateY(-2px) scale(1.02)';
+                                e.currentTarget.style.boxShadow = '0 8px 30px rgba(6, 182, 212, 0.6)';
+                            }}
+                            onMouseLeave={(e) => {
+                                e.currentTarget.style.transform = 'translateY(0) scale(1)';
+                                e.currentTarget.style.boxShadow = '0 4px 20px rgba(6, 182, 212, 0.5)';
+                            }}
+                        >
+                            <svg width={scrolled ? 14 : 16} height={scrolled ? 14 : 16} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                                <polyline points="14 2 14 8 20 8" />
+                                <line x1="12" y1="18" x2="12" y2="12" />
+                                <polyline points="9 15 12 18 15 15" />
+                            </svg>
+                            <span>Manifest</span>
+                        </a>
                     )}
 
                     {/* Mobile Hamburger Menu */}
